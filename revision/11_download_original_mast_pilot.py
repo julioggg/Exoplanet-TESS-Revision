@@ -230,8 +230,14 @@ def main():
                 # The local name cannot collide across TIC/sector/product mode.
                 outfolder = args.store / f"sector_{sector:02d}"
                 outfolder.mkdir(parents=True, exist_ok=True)
+                # Retain .fits.gz when the archived science product is gzip
+                # encoded. Never trust its original basename as a local path.
+                suffix = (
+                    ".fits.gz" if entry["product_filename"].lower().endswith(".gz")
+                    else ".fits"
+                )
                 path = outfolder / (
-                    f"{tic}_{args.author}_{args.exptime}_ORIGINAL.fits"
+                    f"{tic}_{args.author}_{args.exptime}_ORIGINAL{suffix}"
                 )
                 if not path.is_file():
                     result = Observations.download_file(
@@ -312,7 +318,7 @@ def main():
         f"Product mode: {args.author}, {args.exptime} s",
         f"Raw storage outside git: {args.store}", "",
         "See original_fits_columns.csv before selecting a photometric flux column.",
-        "A verified FITS checksum and original MAST URI give provenance; "
+        "A local SHA256 content hash and original MAST URI give provenance; "
         "no science validation is implied.",
     ]
     (args.outdir / "acquisition_report.md").write_text(
