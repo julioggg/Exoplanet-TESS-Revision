@@ -1,0 +1,11 @@
+numpy
+pandas
+scipy
+scikit-learn
+astropy
+lightkurve
+astroquery
+matplotlib
+shap
+joblib
+PyYAML
