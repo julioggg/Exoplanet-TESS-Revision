@@ -9,3 +9,4 @@ matplotlib
 shap
 joblib
 PyYAML
+pytransit>=2.10,<3
