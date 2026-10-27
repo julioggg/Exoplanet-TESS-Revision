@@ -1,0 +1,38 @@
+{
+  "bls_grids_identical": false,
+  "clean_ablation_comparison": false,
+  "negative_bls_grid": {
+    "durations": [
+      0.05,
+      0.1,
+      0.2,
+      0.25
+    ],
+    "period_grid_points": 500,
+    "period_max": 30.0,
+    "period_min": 0.5
+  },
+  "negative_download_stitches_collection": true,
+  "negative_download_uses_download_all": true,
+  "negative_preprocess_has_same_minimum_500_points": false,
+  "negative_std_uses_pandas_series_default_ddof1": true,
+  "positive_bls_grid": {
+    "durations": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25
+    ],
+    "period_grid_points": 5000,
+    "period_max": 30.0,
+    "period_min": 0.5
+  },
+  "positive_download_uses_first_search_result_only": true,
+  "positive_preprocess_minimum_500_points": true,
+  "positive_std_uses_numpy_default_ddof0": true,
+  "submitted_rf_balanced_class_weight": true,
+  "submitted_rf_n_estimators": 500,
+  "without_npoints_rf_balanced_class_weight": false,
+  "without_npoints_rf_n_estimators": 200
+}

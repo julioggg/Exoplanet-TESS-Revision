@@ -1,0 +1,12 @@
+feature,n_total,n_finite,n_nonfinite
+mean_flux,369,369,0
+median_flux,369,369,0
+std_flux,369,369,0
+mad_flux,369,369,0
+amplitude,369,369,0
+n_points,369,369,0
+best_period,369,369,0
+transit_duration,369,369,0
+transit_depth,369,369,0
+bls_power,369,369,0
+snr_estimate,369,369,0

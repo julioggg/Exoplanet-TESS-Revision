@@ -1,0 +1,90 @@
+{
+  "class_counts": {
+    "0": 149,
+    "1": 220
+  },
+  "dataset_path": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/repo/data/dataset/final_dataset.csv",
+  "features": [
+    "mean_flux",
+    "median_flux",
+    "std_flux",
+    "mad_flux",
+    "amplitude",
+    "n_points",
+    "best_period",
+    "transit_duration",
+    "transit_depth",
+    "bls_power",
+    "snr_estimate"
+  ],
+  "median_flux": {
+    "fraction_within_1e-3_of_one": 0.978319783197832,
+    "median": 1.0,
+    "std": 0.05078579808425072
+  },
+  "n_cross_label_tic_conflicts": 0,
+  "n_duplicate_rows_by_tic_membership": 0,
+  "n_points_by_class": {
+    "0": {
+      "max": 91141.0,
+      "mean": 4781.416107382551,
+      "median": 1029.0,
+      "min": 651.0,
+      "n": 149,
+      "q1": 935.0,
+      "q3": 1196.0
+    },
+    "1": {
+      "max": 115324.0,
+      "mean": 21417.127272727274,
+      "median": 16853.0,
+      "min": 695.0,
+      "n": 220,
+      "q1": 14446.25,
+      "q3": 18420.5
+    }
+  },
+  "n_processed_curves_audited": 369,
+  "n_rows": 369,
+  "n_unique_tics": 369,
+  "original_root": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/scratch/original/Aticulo CVV G3/exo_moo_tess_data_module",
+  "processed_curve_audit_available": true,
+  "source_code_audit": {
+    "bls_grids_identical": false,
+    "clean_ablation_comparison": false,
+    "negative_bls_grid": {
+      "durations": [
+        0.05,
+        0.1,
+        0.2,
+        0.25
+      ],
+      "period_grid_points": 500,
+      "period_max": 30.0,
+      "period_min": 0.5
+    },
+    "negative_download_stitches_collection": true,
+    "negative_download_uses_download_all": true,
+    "negative_preprocess_has_same_minimum_500_points": false,
+    "negative_std_uses_pandas_series_default_ddof1": true,
+    "positive_bls_grid": {
+      "durations": [
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25
+      ],
+      "period_grid_points": 5000,
+      "period_max": 30.0,
+      "period_min": 0.5
+    },
+    "positive_download_uses_first_search_result_only": true,
+    "positive_preprocess_minimum_500_points": true,
+    "positive_std_uses_numpy_default_ddof0": true,
+    "submitted_rf_balanced_class_weight": true,
+    "submitted_rf_n_estimators": 500,
+    "without_npoints_rf_balanced_class_weight": false,
+    "without_npoints_rf_n_estimators": 200
+  }
+}
