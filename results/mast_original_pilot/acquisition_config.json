@@ -1,0 +1,14 @@
+{
+  "goal": "original FITS acquisition feasibility, not model validation",
+  "n_pairs_requested": 2,
+  "n_pairs_both_verified": 0,
+  "n_fits_verified": 0,
+  "n_errors": 4,
+  "author": "TGLC",
+  "exptime_seconds": 1800,
+  "files_live_outside_repository": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/data/mast_original_pilot",
+  "download_used_original_dataURI": true,
+  "no_lightkurve_to_fits": true,
+  "no_classification_training": true,
+  "limitation": "Prior labels and TICs were used only for engineering. Need new independently drawn and verified positive/negative labels before prospective science validation."
+}
