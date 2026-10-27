@@ -1,0 +1,62 @@
+{
+  "full_dataset_size": 369,
+  "recorded_sector_overlap": 24,
+  "maximum_sector_pairs": 64,
+  "matched_sector_pairs": 64,
+  "tight_pairs": 34,
+  "calipers": {
+    "max_points_delta": 150.0,
+    "max_baseline_days_delta": 1.5,
+    "max_occupancy_fraction_delta": 0.1
+  },
+  "pair_grouped_cross_validation": true,
+  "n_folds": 5,
+  "n_repeats": 3,
+  "n_trees": 500,
+  "random_seed": 42,
+  "models": {
+    "OBSERVATIONAL_ONLY": [
+      "n_points",
+      "baseline_days_after",
+      "occupancy_fraction"
+    ],
+    "BLS_ONLY": [
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power",
+      "snr_estimate"
+    ],
+    "NO_N_POINTS": [
+      "mean_flux",
+      "std_flux",
+      "mad_flux",
+      "amplitude",
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power",
+      "snr_estimate"
+    ],
+    "FULL": [
+      "mean_flux",
+      "std_flux",
+      "mad_flux",
+      "amplitude",
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power",
+      "snr_estimate",
+      "n_points"
+    ]
+  },
+  "limitations": [
+    "Sector from lightkurve-exported FITS may not represent every stitched sector.",
+    "Matching uses labels to select common-support pairs.",
+    "Group CV fold metrics are not independent confidence intervals.",
+    "Small retained sample; not independently representative of TESS.",
+    "The original positive and negative upstream pipelines differ.",
+    "Catalogue-negative class is not a verified astrophysical true negative."
+  ]
+}
