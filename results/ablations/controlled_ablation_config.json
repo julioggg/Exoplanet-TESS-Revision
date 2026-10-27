@@ -1,0 +1,71 @@
+{
+  "dataset": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/repo/data/dataset/final_dataset.csv",
+  "n_rows": 369,
+  "n_unique_tics": 369,
+  "test_size": 0.3,
+  "random_state": 42,
+  "n_estimators": 500,
+  "class_weight": "balanced",
+  "threshold": 0.5,
+  "n_bootstrap": 2000,
+  "bootstrap_seed": 20261027,
+  "feature_sets": {
+    "FULL": [
+      "mean_flux",
+      "median_flux",
+      "std_flux",
+      "mad_flux",
+      "amplitude",
+      "n_points",
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power",
+      "snr_estimate"
+    ],
+    "NO_N_POINTS": [
+      "mean_flux",
+      "median_flux",
+      "std_flux",
+      "mad_flux",
+      "amplitude",
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power",
+      "snr_estimate"
+    ],
+    "N_POINTS_ONLY": [
+      "n_points"
+    ],
+    "BLS_ONLY": [
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power",
+      "snr_estimate"
+    ],
+    "TRANSIT_PARAMETERS_ONLY": [
+      "best_period",
+      "transit_duration",
+      "transit_depth"
+    ],
+    "STATISTICAL_ONLY": [
+      "mean_flux",
+      "median_flux",
+      "std_flux",
+      "mad_flux",
+      "amplitude"
+    ],
+    "VARIABILITY_ONLY": [
+      "std_flux",
+      "mad_flux",
+      "amplitude"
+    ],
+    "DETECTION_STRENGTH_ONLY": [
+      "bls_power",
+      "snr_estimate"
+    ]
+  },
+  "interpretation_guardrail": "These are sensitivity analyses on the submitted feature table. Because positive/negative light curves were generated with different cadences/download strategies and different BLS grids, these results must not be interpreted as the final deconfounded performance."
+}
