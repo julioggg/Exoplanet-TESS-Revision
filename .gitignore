@@ -1,0 +1,36 @@
+# Raw / processed astronomical data
+data/raw/
+data/processed/
+*.fits
+*.fits.gz
+
+# Synthetic large datasets
+data/synthetic/
+
+# Binary models
+*.pkl
+*.joblib
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+
+# HPC / SLURM
+slurm-*.out
+*.err
+*.out
+logs/
+
+# Temporary
+scratch/
+tmp/
+.cache/
+.DS_Store
+Thumbs.db
