@@ -35,6 +35,9 @@ Q = 0.95
 
 def load_data():
     truth = pd.read_csv(TRUTH)
+    # The initial full-run split is not the independent, pilot-excluded split.
+    # Use ONLY the separately frozen source-star split from experiment 08.
+    truth = truth.drop(columns=["split"], errors="ignore")
     feats = pd.read_csv(FEATURES)
     split = pd.read_csv(SPLIT)
     if feats.duplicated(["pair_id", "label"]).any():
