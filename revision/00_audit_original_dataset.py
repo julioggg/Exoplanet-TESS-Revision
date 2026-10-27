@@ -492,7 +492,10 @@ def main() -> None:
             ]
             if c in coverage.columns
         ]
-        ctest = coverage.rename(columns={"label_from_directory": "label"})
+        ctest = coverage.copy()
+        ctest["label"] = pd.to_numeric(
+            ctest["label_from_directory"], errors="raise"
+        ).astype(int)
         obs_tests = distribution_tests(ctest, obs_metrics)
     else:
         obs_tests = pd.DataFrame()
