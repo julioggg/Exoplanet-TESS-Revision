@@ -225,6 +225,12 @@ def one_source(task):
                     raise ValueError("Invalid common photometric noise scale")
                 cfeat = bls_features(bt, ctrl, sigma)
                 sfeat = bls_features(bt, inj, sigma)
+                if (cfeat["n_points"] != sfeat["n_points"] or
+                        cfeat["baseline_days"] != sfeat["baseline_days"] or
+                        cfeat["noise_sigma_baseline"] != sfeat["noise_sigma_baseline"]):
+                    raise AssertionError(
+                        "Paired control/injection observational attributes diverged"
+                    )
                 matched, alias = period_recovery(
                     sfeat["best_period"], period
                 )
@@ -298,6 +304,35 @@ def summarize(frame, truth, n_stars, outdir):
     direct_and_detect = (
         detections & t_truth["period_recovered_direct"]
     )
+    # Completeness surfaces (descriptive; the independent unit is a source TIC).
+    t_truth = t_truth.copy()
+    t_truth["detected"] = t_truth["injected_bls_snr"] >= threshold
+    t_truth["detected_and_period_recovered"] = (
+        t_truth["detected"] & t_truth["period_recovered_direct"]
+    )
+    t_truth["period_bin"] = pd.cut(
+        t_truth["true_period_days"],
+        bins=[1.5, 3.5, 6.5, 9.5],
+        include_lowest=True,
+    ).astype(str)
+    t_truth["radius_ratio_bin"] = pd.cut(
+        t_truth["radius_ratio"],
+        bins=[0.035, 0.07, 0.11, 0.15],
+        include_lowest=True,
+    ).astype(str)
+    for dimension, filename in [
+        ("period_bin", "heldout_recovery_by_period.csv"),
+        ("radius_ratio_bin", "heldout_recovery_by_radius_ratio.csv"),
+    ]:
+        t_truth.groupby(dimension, dropna=False).agg(
+            n_injections=("pair_id", "size"),
+            n_independent_stars=("tic_id", "nunique"),
+            detection_fraction=("detected", "mean"),
+            direct_period_fraction=("period_recovered_direct", "mean"),
+            joint_detection_and_period_fraction=(
+                "detected_and_period_recovered", "mean"
+            ),
+        ).reset_index().to_csv(outdir / filename, index=False)
     stats = {
         "status": "completed",
         "n_original_stars_requested": n_stars,
