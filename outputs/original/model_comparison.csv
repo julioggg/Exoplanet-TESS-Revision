@@ -1,0 +1,4 @@
+Modelo,Accuracy,Precision,Recall,F1,CV_F1
+RF completo,0.8421,0.7143,0.8333,0.7692,0.8044
+RF limpio,0.9286,1.0,0.8333,0.9091,0.8833
+RF reducido,0.8571,0.8333,0.8333,0.8333,0.9029

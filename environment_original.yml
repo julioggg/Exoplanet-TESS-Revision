@@ -1,0 +1,14 @@
+
+name: exo_moo
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas
+  - numpy
+  - requests
+  - tqdm
+  - pip
+  - pip:
+      - lightkurve
+      - astroquery

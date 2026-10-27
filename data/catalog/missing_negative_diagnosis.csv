@@ -1,0 +1,133 @@
+tic_id,status,message
+TIC 103982380,DOWNLOAD_OK,
+TIC 163382256,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0010-0000000163382257_tess\hlsp_tars_tess_ffi_s0010-0000000163382257_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 167553165,DOWNLOAD_OK,
+TIC 179336878,DOWNLOAD_OK,
+TIC 231568250,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0012-0000000231564043_tess\hlsp_tars_tess_ffi_s0012-0000000231564043_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 252285876,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0019-0000000252285876_tess\hlsp_tars_tess_ffi_s0019-0000000252285876_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 257212966,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0025-0000000257212966_tess\hlsp_tars_tess_ffi_s0025-0000000257212966_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 270074560,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0009-cam3-ccd1-05257426796566498560_tess_v01\hlsp_t16_tess_ffi_s0009-cam3-ccd1-05257426796566498560_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 274025248,DOWNLOAD_OK,
+TIC 288710077,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0011-0000000288710086_tess\hlsp_tars_tess_ffi_s0011-0000000288710086_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 289114499,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0007-cam2-ccd3-03027161124247497216_tess_v01\hlsp_t16_tess_ffi_s0007-cam2-ccd3-03027161124247497216_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 289406633,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0008-cam2-ccd4-05708917847500319744_tess_v01\hlsp_t16_tess_ffi_s0008-cam2-ccd4-05708917847500319744_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 293627673,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0009-cam1-ccd1-03748396187477989376_tess_v01\hlsp_t16_tess_ffi_s0009-cam1-ccd1-03748396187477989376_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 29511512,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0008-cam3-ccd1-05331481584733122176_tess_v01\hlsp_t16_tess_ffi_s0008-cam3-ccd1-05331481584733122176_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 295124544,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0012-0000000295124544_tess\hlsp_tars_tess_ffi_s0012-0000000295124544_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 306792194,DOWNLOAD_OK,
+TIC 307699782,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0007-cam2-ccd3-05720472065441990144_tess_v01\hlsp_t16_tess_ffi_s0007-cam2-ccd3-05720472065441990144_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 308257636,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0006-cam1-ccd3-03356307141264715264_tess_v01\hlsp_t16_tess_ffi_s0006-cam1-ccd3-03356307141264715264_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 310860757,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0012-0000000310860756_tess\hlsp_tars_tess_ffi_s0012-0000000310860756_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 332714312,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0004-cam1-ccd4-02491285098461681664_tess_v01\hlsp_t16_tess_ffi_s0004-cam1-ccd4-02491285098461681664_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 333609715,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0006-0000000333609699_tess\hlsp_tars_tess_ffi_s0006-0000000333609699_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 336093538,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0016-0000000336093539_tess\hlsp_tars_tess_ffi_s0016-0000000336093539_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 338635747,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0012-0000000338635718_tess\hlsp_tars_tess_ffi_s0012-0000000338635718_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 348939369,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0008-cam1-ccd2-05687604501789191808_tess_v01\hlsp_t16_tess_ffi_s0008-cam1-ccd2-05687604501789191808_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 357454369,DOWNLOAD_OK,
+TIC 359390340,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0025-0000000359390340_tess\hlsp_tars_tess_ffi_s0025-0000000359390340_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 36216317,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0006-cam1-ccd2-03107200038827413504_tess_v01\hlsp_t16_tess_ffi_s0006-cam1-ccd2-03107200038827413504_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 365691074,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0006-cam1-ccd4-03237972275338051584_tess_v01\hlsp_t16_tess_ffi_s0006-cam1-ccd4-03237972275338051584_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 372127221,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0013-0000000372127221_tess\hlsp_tars_tess_ffi_s0013-0000000372127221_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 389368908,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0001-cam4-ccd1-04659504608093778944_tess_v01\hlsp_t16_tess_ffi_s0001-cam4-ccd1-04659504608093778944_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 393417080,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0006-cam3-ccd1-05574806153653165568_tess_v01\hlsp_t16_tess_ffi_s0006-cam3-ccd1-05574806153653165568_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 396193505,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0017-0000000396193505_tess\hlsp_tars_tess_ffi_s0017-0000000396193505_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 40061031,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0003-cam1-ccd4-02423956469575559808_tess_v01\hlsp_t16_tess_ffi_s0003-cam1-ccd4-02423956469575559808_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 402024999,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0042-0000000402024999_tess\hlsp_tars_tess_ffi_s0042-0000000402024999_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 426410833,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0012-0000000426410833_tess\hlsp_tars_tess_ffi_s0012-0000000426410833_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 428387393,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0018-0000000428387393_tess\hlsp_tars_tess_ffi_s0018-0000000428387393_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 432004019,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0007-cam2-ccd3-05712835166918128384_tess_v01\hlsp_t16_tess_ffi_s0007-cam2-ccd3-05712835166918128384_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 439431826,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0009-cam3-ccd4-05305326299069309952_tess_v01\hlsp_t16_tess_ffi_s0009-cam3-ccd4-05305326299069309952_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 443484403,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0011-0000000443484387_tess\hlsp_tars_tess_ffi_s0011-0000000443484387_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 444285667,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0024-0000000444285675_tess\hlsp_tars_tess_ffi_s0024-0000000444285675_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 453034915,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0008-cam1-ccd3-03840387235837354752_tess_v01\hlsp_t16_tess_ffi_s0008-cam1-ccd3-03840387235837354752_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 463962871,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0009-cam3-ccd1-05355011648974520704_tess_v01\hlsp_t16_tess_ffi_s0009-cam3-ccd1-05355011648974520704_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 464299364,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0009-cam3-ccd1-05351808840323437184_tess_v01\hlsp_t16_tess_ffi_s0009-cam3-ccd1-05351808840323437184_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 467370368,DOWNLOAD_OK,
+TIC 59905866,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0013-0000000059905842_tess\hlsp_tars_tess_ffi_s0013-0000000059905842_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 609121577,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0018-0000000420496168_tess\hlsp_tars_tess_ffi_s0018-0000000420496168_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 63509641,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0018-0000000063509641_tess\hlsp_tars_tess_ffi_s0018-0000000063509641_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 66240283,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0007-cam2-ccd1-05617367699020579456_tess_v01\hlsp_t16_tess_ffi_s0007-cam2-ccd1-05617367699020579456_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 67399769,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0021-0000000067399769_tess\hlsp_tars_tess_ffi_s0021-0000000067399769_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 68436437,DOWNLOAD_OK,
+TIC 708027879,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0006-0000000287993251_tess\hlsp_tars_tess_ffi_s0006-0000000287993251_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 717055221,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0006-cam1-ccd4-03348384855044749056_tess_v01\hlsp_t16_tess_ffi_s0006-cam1-ccd4-03348384855044749056_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 746901273,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0007-0000000295147789_tess\hlsp_tars_tess_ffi_s0007-0000000295147789_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 747356908,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0006-0000000142607687_tess\hlsp_tars_tess_ffi_s0006-0000000142607687_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 770932235,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0007-0000000059734925_tess\hlsp_tars_tess_ffi_s0007-0000000059734925_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 807459012,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0009-0000000358990298_tess\hlsp_tars_tess_ffi_s0009-0000000358990298_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 810242083,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0008-cam3-ccd4-05310878420471558784_tess_v01\hlsp_t16_tess_ffi_s0008-cam3-ccd4-05310878420471558784_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 813346757,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0008-0000000093108482_tess\hlsp_tars_tess_ffi_s0008-0000000093108482_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 818916104,DOWNLOAD_OK,
+TIC 819182122,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0008-cam3-ccd2-05521312095473137536_tess_v01\hlsp_t16_tess_ffi_s0008-cam3-ccd2-05521312095473137536_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 846214955,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0009-cam3-ccd4-05246916083854691072_tess_v01\hlsp_t16_tess_ffi_s0009-cam3-ccd4-05246916083854691072_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 846512420,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0009-0000000362601677_tess\hlsp_tars_tess_ffi_s0009-0000000362601677_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 854608835,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_t16_tess_ffi_s0009-cam3-ccd1-05257895085434464640_tess_v01\hlsp_t16_tess_ffi_s0009-cam3-ccd1-05257895085434464640_tess_v01_llc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 856176160,DOWNLOAD_OK,
+TIC 921274173,DOWNLOAD_OK,
+TIC 940525364,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0010-0000000061370695_tess\hlsp_tars_tess_ffi_s0010-0000000061370695_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 958929730,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0011-0000000326540817_tess\hlsp_tars_tess_ffi_s0011-0000000326540817_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 959437937,DOWNLOAD_OK,
+TIC 968491534,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0011-0000000325377099_tess\hlsp_tars_tess_ffi_s0011-0000000325377099_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 970336805,DOWNLOAD_OK,
+TIC 970628888,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0011-0000000438656329_tess\hlsp_tars_tess_ffi_s0011-0000000438656329_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."
+TIC 971907906,DOWNLOAD_OK,
+TIC 988974072,LightkurveError,"Error in reading Data product C:\Users\USER\.lightkurve\cache\mastDownload\HLSP\hlsp_tars_tess_ffi_s0010-0000000398632451_tess\hlsp_tars_tess_ffi_s0010-0000000398632451_tess_v01_lc.fits of type generic .
+This file may be corrupt due to an interrupted download. Please remove it from your disk and try again."

@@ -1,0 +1,11 @@
+Metric,Value
+Positivos,20.0
+Negativos,24.0
+Total muestras,44.0
+Variables finales,10.0
+Accuracy,0.9286
+Precision,1.0
+Recall,0.8333
+F1,0.9091
+CV_F1,0.8833
+CV_STD,0.1453

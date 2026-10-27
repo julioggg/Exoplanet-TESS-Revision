@@ -1,0 +1,47 @@
+
+1) conda env create -f environment.yml
+2) conda activate exo_moo
+01_download_catalogs
+02_build_target_list
+03_download_lightcurves - copia
+03a_estimate_dataset_size
+03b_download_50_targets
+03c_download_200_positive_targets
+04_preprocess_lightcurves
+05_extract_bls_features
+06_build_dataset
+07_generate_negative_targets
+07b_validate_negative_targets
+08_preprocess_positive_dataset
+09_extract_bls_positive
+10_extract_statistical_features
+11_build_positive_dataset
+12_download_negative_fits
+12b_find_missing_negative_fits
+12c_diagnose_missing_negatives
+13_preprocess_negatives
+14_extract_negative_bls_features
+15_extract_negative_statistical_features
+16_build_negative_dataset
+17_build_final_dataset
+18_train_random_forest
+19_train_without_npoints
+20_cross_validation
+21_save_model
+22_predict_new_target
+23_dataset_diagnostics
+24_find_outliers
+25_clean_outliers
+26_train_rf_clean
+27_cross_validation_clean
+28_feature_selection
+29_feature_reduction
+30_train_rf_reduced
+31_cross_validation_reduced
+32_save_clean_model
+33_generate_figures
+34_generate_results_table
+35_feature_importance_table
+36_dataset_summary
+plot_config
+
