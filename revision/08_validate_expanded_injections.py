@@ -105,66 +105,58 @@ def get_unique_controls(records):
 
 
 def interval_by_cluster(test_records, test_controls, threshold, n_boot, seed):
+    """Nonparametric clustered bootstrap, resampling independent source TICs."""
     rng = np.random.default_rng(seed)
-    by_star = {
-        str(tic): sub for tic, sub in test_records.groupby("tic_id")
-    }
-    tics = np.array(sorted(by_star))
-    ctrl = test_controls.to_dict()
-
-    # Metric definitions averaged equally over independent source stars.
-    def measure(stars):
-        false_alarms = []
-        detections = []
-        direct = []
-        alias_inclusive = []
-        joint = []
-        delta_positive = []
-        for tic in stars:
-            tic = str(tic)
-            block = by_star[tic]
-            false_alarms.append(float(ctrl[tic] >= threshold))
-            pred = block.injected_snr.to_numpy(float) >= threshold
-            recovered = block.period_recovered_direct.to_numpy(bool)
-            harmonic = block.period_recovered_alias.to_numpy(bool)
-            detections.append(float(np.mean(pred)))
-            direct.append(float(np.mean(recovered)))
-            alias_inclusive.append(float(np.mean(recovered | harmonic)))
-            joint.append(float(np.mean(pred & recovered)))
-            delta_positive.append(float(np.mean(
-                block.injected_snr.to_numpy(float) > 
-                block.control_snr.to_numpy(float)
-            )))
-        return {
-            "control_fpr": float(np.mean(false_alarms)),
-            "injected_detection": float(np.mean(detections)),
-            "direct_period_recovery": float(np.mean(direct)),
-            "period_or_alias_recovery": float(np.mean(alias_inclusive)),
-            "joint_detection_and_direct_period": float(np.mean(joint)),
-            "paired_snr_improvement_rate": float(np.mean(delta_positive)),
-        }
-
-    point = measure(tics)
-    boot = {key: [] for key in point}
-    for _ in range(n_boot):
-        draw = rng.choice(tics, size=len(tics), replace=True)
-        value = measure(draw)
-        for key in boot:
-            boot[key].append(value[key])
-
-    rows = []
-    for name, v in boot.items():
-        arr = np.asarray(v, dtype=float)
-        rows.append({
+    groups = test_records.groupby("tic_id", sort=True)
+    tics = sorted(str(t) for t in groups.groups)
+    ctrl = {str(k): float(v) for k, v in test_controls.items()}
+    by_star = []
+    for tic in tics:
+        block = groups.get_group(tic)
+        detected = block.injected_snr.to_numpy(float) >= threshold
+        recovered = block.period_recovered_direct.to_numpy(bool)
+        alias = block.period_recovered_alias.to_numpy(bool)
+        improving = (
+            block.injected_snr.to_numpy(float) >
+            block.control_snr.to_numpy(float)
+        )
+        by_star.append([
+            float(ctrl[tic] >= threshold),
+            float(np.mean(detected)),
+            float(np.mean(recovered)),
+            float(np.mean(recovered | alias)),
+            float(np.mean(detected & recovered)),
+            float(np.mean(improving)),
+        ])
+    names = [
+        "control_fpr",
+        "injected_detection",
+        "direct_period_recovery",
+        "period_or_alias_recovery",
+        "joint_detection_and_direct_period",
+        "paired_snr_improvement_rate",
+    ]
+    values = np.asarray(by_star, dtype=float)
+    n_stars = len(values)
+    if n_stars == 0:
+        raise ValueError("No evaluation stars")
+    points = values.mean(axis=0)
+    # No training-source or injection-level resampling: each bootstrap draw
+    # contains n_stars TIC indices, preserving all repeated injections.
+    draws = rng.integers(0, n_stars, size=(n_boot, n_stars))
+    boot_means = values[draws].mean(axis=1)
+    return pd.DataFrame([
+        {
             "metric": name,
-            "point_estimate": point[name],
-            "ci95_low": float(np.quantile(arr, 0.025)),
-            "ci95_high": float(np.quantile(arr, 0.975)),
-            "n_independent_test_stars": len(tics),
+            "point_estimate": float(points[j]),
+            "ci95_low": float(np.quantile(boot_means[:, j], 0.025)),
+            "ci95_high": float(np.quantile(boot_means[:, j], 0.975)),
+            "n_independent_test_stars": n_stars,
             "bootstrap_unit": "TIC",
             "n_cluster_bootstrap": n_boot,
-        })
-    return pd.DataFrame(rows)
+        }
+        for j, name in enumerate(names)
+    ])
 
 
 def summarize_completeness(records, threshold):
