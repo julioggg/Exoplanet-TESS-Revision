@@ -1,0 +1,109 @@
+{
+  "n_stars": 369,
+  "n_unique_tics": 369,
+  "train_size": 258,
+  "test_size": 111,
+  "seed": 42,
+  "test_fraction": 0.3,
+  "trees": 500,
+  "class_weight": "balanced",
+  "n_repeats": 3,
+  "n_folds": 5,
+  "cv_training_only": true,
+  "n_jobs": 8,
+  "n_bootstrap": 2000,
+  "feature_sets": {
+    "FULL_RAW": [
+      "mean_flux",
+      "median_flux",
+      "std_flux",
+      "mad_flux",
+      "amplitude",
+      "n_points",
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power",
+      "snr_estimate"
+    ],
+    "NO_N_POINTS_RAW": [
+      "mean_flux",
+      "median_flux",
+      "std_flux",
+      "mad_flux",
+      "amplitude",
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power",
+      "snr_estimate"
+    ],
+    "N_POINTS_ONLY": [
+      "n_points"
+    ],
+    "BLS_ONLY_RAW": [
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power",
+      "snr_estimate"
+    ],
+    "FULL_NOISE_SCALED": [
+      "mean_flux",
+      "std_flux",
+      "mad_flux",
+      "amplitude",
+      "n_points",
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power_noise_scaled",
+      "bls_depth_snr_noise_scaled"
+    ],
+    "NO_N_POINTS_NOISE_SCALED": [
+      "mean_flux",
+      "std_flux",
+      "mad_flux",
+      "amplitude",
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power_noise_scaled",
+      "bls_depth_snr_noise_scaled"
+    ],
+    "BLS_ONLY_NOISE_SCALED": [
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power_noise_scaled",
+      "bls_depth_snr_noise_scaled"
+    ],
+    "OBSERVATIONAL_ONLY": [
+      "n_points",
+      "baseline_days_after",
+      "median_cadence_minutes_after"
+    ],
+    "STATISTICAL_ONLY": [
+      "mean_flux",
+      "std_flux",
+      "mad_flux",
+      "amplitude"
+    ],
+    "TRANSIT_PARAMETERS_ONLY": [
+      "best_period",
+      "transit_duration",
+      "transit_depth"
+    ]
+  },
+  "noise_scaled_columns_are_proxies_not_calibrated_snr": true,
+  "limitations": [
+    "Processed light curves were not regenerated from raw FITS.",
+    "No confirmed planet is not a verified true-negative label.",
+    "Injection/recovery and eclipsing-binary challenges are not yet done.",
+    "BLS period grid extends beyond 27-day time baseline.",
+    "Holdout bootstrap excludes retraining, selection and label uncertainty."
+  ],
+  "python_version": "3.10.20",
+  "numpy_version": "2.2.6",
+  "pandas_version": "2.3.3"
+}
