@@ -127,24 +127,62 @@ def find_selected_product(tic, sector, author, exptime, lk):
 
 
 def inspect_fits(path, entry):
+    """Inspect ORIGINAL MAST FITS without assuming SPOC-style capitalization.
+
+    TGLC FITS columns conventionally include lowercase 'time',
+    'cal_psf_flux', 'cal_aper_flux', 'tess_flags'. Astropy preserves
+    original column-name case, so a literal check for 'TIME' is invalid.
+    """
     with fits.open(path, memmap=True, checksum=False) as hdul:
         if len(hdul) < 2:
             raise ValueError("Original FITS has no science extension")
         primary = hdul[0].header
         columns = []
+        hdu_shapes = []
         n_science = 0
+        science_hdu = None
+        time_column = ""
+        candidate_flux_columns = []
         for hduix, hdu in enumerate(hdul):
-            if getattr(hdu, "columns", None) is not None:
-                names = list(hdu.columns.names or [])
+            table_columns = getattr(hdu, "columns", None)
+            names = list(table_columns.names or []) if table_columns is not None else []
+            normalized = {str(name).strip().lower(): name for name in names}
+            n_rows = (
+                int(len(hdu.data))
+                if names and hdu.data is not None
+                else 0
+            )
+            hdu_shapes.append(
+                f"HDU{hduix}:{str(hdu.header.get('EXTNAME', 'PRIMARY'))}"
+                f":type={type(hdu).__name__}:rows={n_rows}"
+                f":cols={','.join(map(str, names[:24]))}"
+            )
+            if table_columns is not None:
                 columns.extend({
-                    "tic_id": entry["tic_id"], "sector": entry["sector"],
-                    "author": entry["author"], "hdu": hduix,
+                    "tic_id": entry["tic_id"],
+                    "sector": entry["sector"],
+                    "author": entry["author"],
+                    "hdu": hduix,
                     "extension": str(hdu.header.get("EXTNAME", "")),
-                    "column": name,
-                    "unit": str(hdu.columns[name].unit or "")
-                } for name in names)
-                if "TIME" in names:
-                    n_science = len(hdu.data) if hdu.data is not None else 0
+                    "column": str(col.name),
+                    "unit": str(col.unit or ""),
+                } for col in table_columns)
+            # time is intentionally matched without case sensitivity.
+            # Use the largest real time-series table if multiple match.
+            if "time" in normalized and n_rows > n_science:
+                n_science = n_rows
+                science_hdu = hduix
+                time_column = str(normalized["time"])
+                candidate_flux_columns = [
+                    str(name) for norm, name in normalized.items()
+                    if norm in {
+                        "cal_psf_flux", "cal_aper_flux",
+                        "psf_flux", "aperture_flux",
+                        "sap_flux", "pdcsap_flux", "flux",
+                        "flux_corr", "flux_raw",
+                    }
+                ]
+
         hdr = {
             "telescop": str(primary.get("TELESCOP", "")),
             "origin": str(primary.get("ORIGIN", "")),
@@ -154,19 +192,41 @@ def inspect_fits(path, entry):
             "ticid_in_header": str(primary.get("TICID", "")),
             "n_science_rows": int(n_science),
             "n_hdus": len(hdul),
+            "science_hdu_index": science_hdu,
+            "time_column_name": time_column,
+            "flux_columns_available": ";".join(candidate_flux_columns),
         }
-        # If provided, verify a header TIC matches expected target.
         for hdu in hdul:
-            for keyword in ["TICID"]:
-                hv = hdu.header.get(keyword, None)
-                if hv is not None and digits(hv) and digits(hv) != digits(
-                    entry["tic_id"]
-                ):
-                    raise ValueError(
-                        "Source TIC conflicts with a science-product header"
-                    )
+            original_sector = hdu.header.get("SECTOR")
+            if original_sector is not None:
+                try:
+                    if int(original_sector) != int(entry["sector"]):
+                        raise ValueError(
+                            "Science product sector differs from query "
+                            f"({original_sector} vs {entry['sector']})"
+                        )
+                except (TypeError, OverflowError) as exc:
+                    raise ValueError(f"Invalid sector keyword: {original_sector}") from exc
+            tic_header = hdu.header.get("TICID", None)
+            if (
+                tic_header is not None and digits(tic_header)
+                and digits(tic_header) != digits(entry["tic_id"])
+            ):
+                raise ValueError(
+                    "Source TIC conflicts with a science-product header"
+                )
+
         if n_science < 300:
-            raise ValueError(f"Insufficient science rows: {n_science}")
+            raise ValueError(
+                f"Insufficient science rows: {n_science}; "
+                f"HDU inventory: {' | '.join(hdu_shapes)}"
+            )
+        if not candidate_flux_columns:
+            raise ValueError(
+                "Time-series table found, but no known photometric "
+                "flux columns; inspect raw column inventory: "
+                + " | ".join(hdu_shapes)
+            )
         if hdr["telescop"] and hdr["telescop"].upper() != "TESS":
             raise ValueError("Unexpected telescope keyword in original FITS")
     return hdr, columns
