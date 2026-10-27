@@ -11,6 +11,7 @@ PACKAGES = [
     ("scipy", "scipy"),
     ("sklearn", "scikit-learn"),
     ("astropy", "astropy"),
+    ("pytransit", "PyTransit"),
     ("lightkurve", "lightkurve"),
     ("astroquery", "astroquery"),
     ("matplotlib", "matplotlib"),
