@@ -1,0 +1,30 @@
+{
+  "full_input": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/repo/results/injection_full",
+  "pilot_input": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/repo/results/injection_pilot",
+  "original_tics_in_full": 149,
+  "pilot_tics_excluded": 12,
+  "n_remaining_tics": 137,
+  "n_calibration_tics": 95,
+  "n_evaluation_tics": 42,
+  "n_evaluation_injections": 126,
+  "star_split_seed": 42,
+  "nominal_false_positive_targets": [
+    0.01,
+    0.05,
+    0.1
+  ],
+  "primary_nominal_fpr": 0.05,
+  "bootstrap_clusters": 3000,
+  "bootstrap_unit": "source TIC",
+  "mask_and_photometry_match_in_each_pair": true,
+  "precautions": [
+    "Pilot TICs were inspected during development, excluded from primary analysis.",
+    "Catalogue negatives are not proven non-transiting stars.",
+    "Threshold learned using CALIBRATION control TICs only.",
+    "CIs reflect sampling of EVALUATION stars with fixed threshold.",
+    "Per-source replicated injections are not independent.",
+    "Assumed solar stellar parameters; injection completeness is conditional.",
+    "Small-bin summaries are descriptive, not confidence intervals.",
+    "This evaluates BLS detectability and period recovery, not an RF exoplanet detector."
+  ]
+}

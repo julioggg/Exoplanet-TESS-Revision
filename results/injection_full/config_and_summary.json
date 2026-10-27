@@ -1,0 +1,71 @@
+{
+  "experiment": "injection_full",
+  "raw_sources": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/scratch/original/Aticulo CVV G3/exo_moo_tess_data_module/data/raw/negatives",
+  "target_catalogue": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/repo/data/dataset/final_dataset.csv",
+  "n_stars_requested": 149,
+  "n_injections_per_star_requested": 3,
+  "n_workers": 4,
+  "fixed_seed": 20261027,
+  "pytransit_model": "RoadRunnerModel('quadratic')",
+  "limb_darkening": [
+    0.3,
+    0.2
+  ],
+  "assumed_host_mass_msun": 1.0,
+  "assumed_host_radius_rsun": 1.0,
+  "period_range_days": [
+    1.5,
+    9.5
+  ],
+  "radius_ratio_range": [
+    0.035,
+    0.15
+  ],
+  "impact_parameter_range": [
+    0.0,
+    0.8
+  ],
+  "exposure_supersamples": 7,
+  "baseline_max_days": 27.0,
+  "cadence_minutes": 30.0,
+  "bls_period_grid": [
+    0.5,
+    15.0,
+    4000
+  ],
+  "bls_durations_days": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25
+  ],
+  "shared_control_derived_clip_mask": true,
+  "shared_control_derived_flux_normalization": true,
+  "split_group": "tic_id",
+  "limitations": [
+    "The host-star mass/radius/limb darkening are assumed Solar-like.",
+    "Catalogued negative sources may contain unknown real transits.",
+    "The noise dy is a per-star MAD-based white-noise surrogate.",
+    "This is a controlled injection diagnostic, not planet validation.",
+    "Repeated controls/injections from one TIC are not independent."
+  ],
+  "summary": {
+    "status": "completed",
+    "n_original_stars_requested": 149,
+    "n_unique_stars_usable": 149,
+    "n_pairs": 447,
+    "n_star_train": 104,
+    "n_star_test": 45,
+    "n_test_injections": 135,
+    "n_test_control_stars": 45,
+    "threshold_calibrated_on_training_controls_95pct": 42.03722946539674,
+    "heldout_control_false_positive_rate": 0.08888888888888889,
+    "heldout_injected_detection_rate": 0.1259259259259259,
+    "heldout_direct_period_recovery_fraction": 0.37777777777777777,
+    "heldout_period_or_2to1_alias_recovery_fraction": 0.4074074074074074,
+    "heldout_detection_and_direct_period_recovery_fraction": 0.037037037037037035,
+    "note": "Detection uses training-calibrated 95th percentile of control BLS depth_snr. Period recovery requires relative error <=2%, separately allowing 2:1 aliases. These are descriptive point estimates; stars (not injections) are the independent units."
+  },
+  "number_of_failed_pairs_or_files": 0
+}
