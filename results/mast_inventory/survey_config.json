@@ -1,0 +1,15 @@
+{
+  "queried_pairs": 8,
+  "unique_queried_sectors": 8,
+  "pairs_with_matching_author_exptime_sector": 7,
+  "queries_with_errors": 0,
+  "no_science_fits_downloaded": true,
+  "exact_target_match_required": true,
+  "notes": [
+    "This is only a metadata availability survey of previously used stars.",
+    "Matching author and exposure does not prove identical photometric quality.",
+    "A source outside its recorded exported sector may still have other products.",
+    "MAST network errors are not proof of missing products.",
+    "Final independent validation will require newly chosen target TICs."
+  ]
+}

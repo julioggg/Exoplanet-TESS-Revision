@@ -1,0 +1,5 @@
+metric,point_estimate,two_stage_ci95_low,two_stage_ci95_high,bootstrap_median,n_calibration_stars,n_evaluation_stars,bootstrap_unit,n_bootstrap
+threshold,36.35482799309237,25.60857034270386,73.09868204520167,36.35482799309237,95,42,TIC both stages,3000
+false_positive_rate,0.09523809523809523,0.0,0.19047619047619047,0.07142857142857142,95,42,TIC both stages,3000
+injected_detection_rate,0.15873015873015872,0.0,0.30158730158730157,0.1349206349206349,95,42,TIC both stages,3000
+joint_detection_and_direct_period_rate,0.06349206349206349,0.0,0.14285714285714285,0.047619047619047616,95,42,TIC both stages,3000

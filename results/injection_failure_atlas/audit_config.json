@@ -1,0 +1,10 @@
+{
+  "n_source_stars_calibration": 95,
+  "n_source_stars_evaluation": 42,
+  "n_injections_evaluation": 126,
+  "fraction_injected_max_BLS_SNR_higher_than_control": 0.48412698412698413,
+  "fraction_injected_period_recovered": 0.31746031746031744,
+  "report_is_post_hoc": true,
+  "do_not_reoptimize_on_current_heldout_stars": true,
+  "two_stage_bootstrap": "Each replicate reestimates the 95th percentile on a source-star bootstrap of calibration controls, and independently resamples the heldout source stars (keeping all three injections together)."
+}
