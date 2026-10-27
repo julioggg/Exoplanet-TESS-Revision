@@ -1,0 +1,59 @@
+{
+  "source_dataset": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/repo/results/harmonized/harmonized_features.csv",
+  "heldout_membership_reused": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/repo/results/harmonized_eval/holdout_split_membership.csv",
+  "original_fits_root": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/scratch/original/Aticulo CVV G3/exo_moo_tess_data_module",
+  "n_unique_tics": 369,
+  "n_train": 258,
+  "n_test": 111,
+  "tree_count": 500,
+  "seed": 42,
+  "cv_folds": 5,
+  "cv_on_training_only": true,
+  "diagnostic_sets": {
+    "OBS_ALL_PRECISE": [
+      "n_points",
+      "baseline_days_after",
+      "median_cadence_minutes_after"
+    ],
+    "COUNT_PLUS_BASELINE": [
+      "n_points",
+      "baseline_days_after"
+    ],
+    "COUNT_PLUS_CADENCE": [
+      "n_points",
+      "median_cadence_minutes_after"
+    ],
+    "BASELINE_PLUS_CADENCE": [
+      "baseline_days_after",
+      "median_cadence_minutes_after"
+    ],
+    "COUNT_ONLY": [
+      "n_points"
+    ],
+    "BASELINE_ONLY": [
+      "baseline_days_after"
+    ],
+    "CADENCE_ONLY_PRECISE": [
+      "median_cadence_minutes_after"
+    ],
+    "OBS_CADENCE_ROUNDED_1MIN": [
+      "n_points",
+      "baseline_days_after",
+      "cadence_rounded_minute"
+    ],
+    "OBS_CADENCE_FIXED_30MIN": [
+      "n_points",
+      "baseline_days_after",
+      "cadence_exact_30min"
+    ],
+    "OCCUPANCY_ONLY": [
+      "occupancy_fraction"
+    ],
+    "COUNT_BASELINE_OCCUPANCY": [
+      "n_points",
+      "baseline_days_after",
+      "occupancy_fraction"
+    ]
+  },
+  "warning": "Predictive observational metadata cannot establish transit detectability. This test diagnoses acquisition/provenance shortcuts. Raw FITS provenance fields can be missing or altered on export."
+}
