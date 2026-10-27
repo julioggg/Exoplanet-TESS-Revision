@@ -1,0 +1,29 @@
+{
+  "scientific_status": "cadence-matched sensitivity dataset",
+  "input_root": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/scratch/original/Aticulo CVV G3/exo_moo_tess_data_module",
+  "curve_workdir": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/data/harmonized_30min",
+  "cadence_minutes": 30.0,
+  "max_baseline_days": 27.0,
+  "min_points_after_binning": 300,
+  "sigma_clip_sigma": 5.0,
+  "sigma_clip_maxiters": 3,
+  "period_min_days": 0.5,
+  "period_max_days": 30.0,
+  "period_grid_points": 5000,
+  "durations_days": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25
+  ],
+  "n_workers": 8,
+  "n_targets_discovered": 369,
+  "n_success": 369,
+  "n_failed": 0,
+  "n_positive_success": 220,
+  "n_negative_success": 149,
+  "snr_primary": "Astropy BoxLeastSquares result.depth_snr where available",
+  "legacy_snr_retained": "abs(transit_depth)/std_flux",
+  "guardrail": "This harmonizes cadence, coverage truncation, clipping, statistical definitions and BLS grid. It does not by itself convert catalogue negatives into astrophysically verified true negatives."
+}

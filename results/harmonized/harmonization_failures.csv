@@ -1,0 +1,1 @@
+tic_id,label,source_file,n_points_before,baseline_days_before,median_cadence_minutes_before,n_points_after,baseline_days_after,median_cadence_minutes_after,raw_points_represented_after_binning,harmonized_curve_file,status,error
