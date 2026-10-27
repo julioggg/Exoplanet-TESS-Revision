@@ -1,0 +1,15 @@
+{
+  "tag": "pilot",
+  "n_pairs": 12,
+  "n_failures": 0,
+  "input_truth": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/repo/results/injection_pilot/injection_truth_and_recovery.csv",
+  "raw_source": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/scratch/original/Aticulo CVV G3/exo_moo_tess_data_module/data/raw/negatives",
+  "source_pipeline": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/repo/revision/06_injection_recovery.py",
+  "blind_search_changed": false,
+  "oracle_knows_true_period": true,
+  "notes": [
+    "This is a post hoc failure analysis, not independent validation.",
+    "No tuning or sample selection should be based on held-out outcomes.",
+    "The noise uses a constant MAD estimate, not full correlated-noise modeling."
+  ]
+}
