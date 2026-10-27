@@ -173,7 +173,8 @@ def harmonize_curve(path: Path, max_baseline_days: float) -> tuple[pd.DataFrame,
         sigma=SIGMA_CLIP_SIGMA,
         maxiters=SIGMA_CLIP_MAXITERS,
     )
-    binned = binned.loc[~np.asarray(clipped.mask)].copy()
+    clip_mask = np.ma.getmaskarray(clipped)
+    binned = binned.loc[~clip_mask].copy()
     binned = binned.reset_index(drop=True)
 
     if len(binned) < MIN_POINTS_AFTER_BINNING:
