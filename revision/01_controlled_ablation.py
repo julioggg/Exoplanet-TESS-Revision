@@ -131,6 +131,25 @@ FEATURE_SETS = {
 }
 
 
+def dataframe_to_markdown(df: pd.DataFrame) -> str:
+    """Minimal Markdown table writer with no optional dependencies."""
+    cols = [str(c) for c in df.columns]
+    lines = [
+        "| " + " | ".join(cols) + " |",
+        "| " + " | ".join(["---"] * len(cols)) + " |",
+    ]
+    for _, row in df.iterrows():
+        vals = []
+        for col in df.columns:
+            value = row[col]
+            if isinstance(value, float):
+                vals.append(f"{value:.6g}")
+            else:
+                vals.append(str(value))
+        lines.append("| " + " | ".join(vals) + " |")
+    return "\\n".join(lines)
+
+
 def specificity_score(y_true, y_pred):
     cm = confusion_matrix(y_true, y_pred, labels=[0, 1])
     tn, fp, fn, tp = cm.ravel()
@@ -475,7 +494,7 @@ def main():
     report.append("")
     report.append("## Hold-out metrics")
     report.append("")
-    report.append(metrics_df[display_cols].round(6).to_markdown(index=False))
+    report.append(dataframe_to_markdown(metrics_df[display_cols].round(6)))
     report.append("")
     report.append("## Key reviewer comparisons")
     report.append("")
