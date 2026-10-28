@@ -1,0 +1,31 @@
+{
+  "selection_type": "NEW independently inventoried NASA-confirmed transiting hosts",
+  "source_archive": "NASA Exoplanet Archive ps default_flag=1 and tran_flag=1",
+  "archive_tap_url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Ctic_id%2Cpl_orbper%2Cpl_tranmid%2C%0A+pl_tranmiderr1%2Cpl_tranmiderr2%2Cpl_tsystemref%2Cpl_ratror%2Cpl_trandep%2C%0A+pl_trandur%2Cdisc_facility%2Cdiscoverymethod%2Ctran_flag%2Cdefault_flag%2C%0A+pl_controv_flag+from+ps%0A+where+default_flag%3D1+and+tran_flag%3D1+and+tic_id+is+not+null%0A+and+pl_orbper%3E%3D1.5+and+pl_orbper%3C%3D9.5%0A+and+disc_facility%3D%27Transiting+Exoplanet+Survey+Satellite+%28TESS%29%27&format=csv",
+  "archive_download_sha256": "e0500d4e6d7067d1f977f8fbb726e078a272151b9ddf246fd3fcaddbd13b788a",
+  "old_dataset_sha256": "eaf7f6c9389922754e9dea2ab3768f317b35bf468a332621c425487a5ea2e173",
+  "old_dataset_tics_excluded": 369,
+  "candidate_planet_source": "NASA archive default PS row, not the old model label",
+  "candidate_queue_seed": 20261027,
+  "queue_interleaving": "period strata 1.5-3.5;3.5-6.5;6.5-9.5 days",
+  "target_stars_requested": 18,
+  "query_cap": 70,
+  "mast_queries_performed": 36,
+  "hosts_available": 18,
+  "mast_search_errors": 0,
+  "product_author": "TGLC",
+  "product_exptime_seconds": 1800,
+  "product_sector": "1 through 26",
+  "product_selection": "earliest unambiguous available sector",
+  "quality_pipeline_frozen": "TGLC_APERTURE_1800S_V1",
+  "no_FITS_downloads": true,
+  "no_performance_evaluation": true,
+  "limitations": [
+    "Confirmed host status does NOT guarantee a transit in chosen sector.",
+    "TIC identification and NASA default solutions must be audited.",
+    "Ephemeris time reference may require correction/verification.",
+    "TGLC product metadata matching is necessary but not sufficient.",
+    "This is positive-host inventory only; no transit-free negatives.",
+    "No future model fitting should use independently frozen test TICs."
+  ]
+}
