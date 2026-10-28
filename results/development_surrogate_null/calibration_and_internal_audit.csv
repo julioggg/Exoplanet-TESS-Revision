@@ -1,0 +1,5 @@
+score_name,source_split,threshold_95pct_calibration_surrogate,n_surrogate_null_trials,n_surrogate_exceedances,surrogate_exceedance_fraction,n_source_hosts,n_source_host_blind_peaks_accepted,n_source_host_correct_periods_accepted,n_injection_trials,n_injections_accepted,n_injection_periods_correct_and_accepted,n_injection_periods_directly_recovered
+raw_log_power,calibration,10.93563724046706,288,14,0.04861111111111111,24,1,0,72,7,3,20
+raw_log_power,internal_development_audit,10.93563724046706,144,31,0.2152777777777778,12,3,0,36,9,0,9
+multievent_evidence,calibration,5.329805494852721,288,14,0.04861111111111111,24,2,2,72,21,16,20
+multievent_evidence,internal_development_audit,5.329805494852721,144,6,0.041666666666666664,12,2,1,36,10,7,9
