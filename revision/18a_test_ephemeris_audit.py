@@ -19,6 +19,10 @@ spec.loader.exec_module(mod)
 
 
 def main():
+    assert mod.curve_path(
+        "TIC_90012345", 7, Path("/tmp/fake_tess_cleaned")
+    ).name == "TIC_90012345_sector_07_TGLC_APERTURE_1800S_V1.csv"
+    print("[PASS] Ephemeris audit uses frozen-policy curve filenames")
     p=3.0
     t=np.arange(1350.0, 1370.0, 1.0/48.0)
     curve=pd.DataFrame({"time_btjd":t})
