@@ -214,7 +214,7 @@ def accepted_events(d):
     )
 
 
-def choose_candidates(time,flux,flags,scan,powers):
+def choose_candidates(time,flux,flags,scan,powers,progress=None):
     """Compare a baseline peak and a filtered peak, WITHOUT NASA truth."""
     valid=np.flatnonzero(np.isfinite(powers))
     if not len(valid):
@@ -228,6 +228,8 @@ def choose_candidates(time,flux,flags,scan,powers):
     visits=0
     for ix in sorted_ix:
         visits+=1
+        if progress is not None and visits%500==0:
+            progress(visits,len(sorted_ix))
         d=event_support(
             time,flux,flags,
             float(scan.period[ix]),
@@ -312,12 +314,17 @@ def main():
     for item in selected.sort_values("selection_rank").to_dict("records"):
         tic=str(item["tic_id"])
         try:
+            print(f"[START {tic}] Original-TGLC blind development scan",flush=True)
             t,flux,flags,source_sha=load_one(item,m[tic],args.private_dir)
             # The blind scan and candidate selection run BEFORE consulting
             # item["planet_period_days"].
             scan,powers,noise=blind_bls(t,flux)
             global_idx,global_ev,constrained,visits=choose_candidates(
-                t,flux,flags,scan,powers
+                t,flux,flags,scan,powers,
+                progress=lambda n,total:print(
+                    f"[SCAN {tic}] inspected {n}/{total} BLS grid candidates",
+                    flush=True
+                )
             )
             constrained_idx=constrained[0] if constrained is not None else None
             constrained_ev=constrained[1] if constrained is not None else None
