@@ -1,0 +1,74 @@
+{
+  "experiment": 24,
+  "role": "DEVELOPMENT physical injection-recovery, not final validation",
+  "frozen_36_hosts_used": 36,
+  "locked_18_holdout_opened": false,
+  "n_trials": 108,
+  "zero_coverage_injections_retained_in_denominator": true,
+  "injections_per_TIC": 3,
+  "random_seed": 20261028,
+  "injection_radius_ratios": [
+    0.03,
+    0.06,
+    0.12
+  ],
+  "balanced_3x3_latin_square_12_per_period_depth_cell": true,
+  "depth_assignment": "((frozen selection_rank -1)+ period_level) % 3",
+  "injection_period_ranges_days": [
+    [
+      1.5,
+      3.5
+    ],
+    [
+      3.5,
+      6.5
+    ],
+    [
+      6.5,
+      9.5
+    ]
+  ],
+  "injection_model": "RoadRunner PyTransit quadratic limb darkening",
+  "stellar_assumptions": "Mstar=1Msun, Rstar=1Rsun (not observed)",
+  "limb_darkening_coefficients": [
+    0.3,
+    0.2
+  ],
+  "finite_exposure_supersampling": 7,
+  "preserve_original_cadences_and_TGLC_flags": true,
+  "no_sigma_clipping_or_detrending": true,
+  "no_new_normalization": true,
+  "injections_multiply_original_cleaned_flux": true,
+  "search_without_catalogue_or_injected_period": true,
+  "BLS_period_grid": [
+    0.5,
+    15.0,
+    4000
+  ],
+  "BLS_durations_days": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25
+  ],
+  "reference_period_compared_only_after_search": true,
+  "same_noise_surrogate_for_baseline_and_injection": true,
+  "no_calibrated_detection_threshold_or_real_false_positive_rate": true,
+  "existing_planet_host_signals_and_instrumental_artifacts_remain": true,
+  "CI_unit": "source TIC, bootstrap within fixed injection depth level",
+  "source_selection_sha256": "b8eb54a65a2f28c6998d905e28a7315b751d120bb1d2123b511d395c90388ff1",
+  "source_QA_sha256": "8c581915a4a421ed610d9b7628a7c663bb1ae6dcdfe7336d700e8ebcc62fd62d",
+  "prior_development_comparison_sha256": "3dc372aed27d0d8d9a1054debb888d8c5d2f3e25b668edeb06a24bb9dfec4df4",
+  "limitations": [
+    "Synthetic solar-star transit population, not actual planet radii or stellar models.",
+    "Period and depth are crossed in a balanced 3x3 design; each TIC supplies only 3/9 cells.",
+    "These are the 36 previously inspected development stars.",
+    "In-sector original planet signals may compete with injected signals.",
+    "Injected trials with no in-sector sampled transit remain in denominator.",
+    "Original photometry and time sampling is unchanged; no true negatives.",
+    "A recovered injected period is not equivalent to a calibrated planet detection.",
+    "Empirical noise-only false-alarm rate is NOT reported.",
+    "The 18 final locked holdout sources must remain unopened."
+  ]
+}
