@@ -56,4 +56,4 @@ Previous nonfinite PSF values do not reject a valid aperture target.
 No per-target fallback is applied; aperture is mandatory for ALL.
 Barycentric timestamps are NEVER replaced with a matched source's times.
 TGLC_flags remain recorded to support future sensitivity checks.
-The four development stars must not serve as a new heldout test set.
+These 36 method-development sources must not be reused as an untouched final test set.
