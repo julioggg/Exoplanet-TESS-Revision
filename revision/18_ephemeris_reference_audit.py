@@ -39,6 +39,7 @@ ROOT=Path(__file__).resolve().parents[1]
 SELECTED=ROOT/"results/new_confirmed_tess_inventory/selected_prospective_hosts.csv"
 BLIND=ROOT/"results/new_confirmed_tess_blind_period/blind_period_per_host.csv"
 PRIVATE=Path.home()/"exoplanet_revision/data/new_confirmed_tess_cleaned"
+POLICY_NAME="TGLC_APERTURE_1800S_V1"
 OUT=ROOT/"results/new_confirmed_tess_ephemeris_audit"
 TAP="https://exoplanetarchive.ipac.caltech.edu/TAP/sync"
 TESS_BTJD_ZERO=2457000.0
@@ -47,6 +48,11 @@ LIVE_FIELDS=[
     "pl_tranmid","pl_tranmiderr1","pl_tranmiderr2","pl_tsystemref",
     "pl_trandur","ttv_flag","default_flag"
 ]
+
+
+def curve_path(tic,sector,private):
+    """The EXACT cleaned-file convention frozen in experiment 14."""
+    return private/f"{tic}_sector_{int(sector):02d}_{POLICY_NAME}.csv"
 
 
 def hash_bytes(value):
@@ -223,7 +229,19 @@ def main():
     args.outdir.mkdir(parents=True,exist_ok=True)
 
     selected=pd.read_csv(SELECTED,dtype={"tic_id":str})
-    blind=pd.read_csv(BLIND,dtype={"tic_id":str})
+    if not BLIND.is_file() or BLIND.stat().st_size == 0:
+        raise RuntimeError(
+            "No valid blind benchmark per-host CSV: run experiment 17 "
+            "successfully before the ephemeris audit. An earlier empty "
+            "0/18 failure file is NOT a scientific result."
+        )
+    try:
+        blind=pd.read_csv(BLIND,dtype={"tic_id":str})
+    except pd.errors.EmptyDataError as exc:
+        raise RuntimeError(
+            "Blind benchmark CSV is empty (failed experiment 17); "
+            "the timing audit cannot proceed"
+        ) from exc
     if (
         len(selected)!=18 or len(blind)!=18
         or set(selected.tic_id)!=set(blind.tic_id)
@@ -231,6 +249,16 @@ def main():
         or blind.tic_id.duplicated().any()
     ):
         raise ValueError("Incomplete or inconsistent frozen 18-TIC benchmark")
+    missing=[
+        curve_path(row.tic_id,row.sector,args.private_dir)
+        for row in selected.itertuples()
+        if not curve_path(row.tic_id,row.sector,args.private_dir).is_file()
+    ]
+    if missing:
+        raise FileNotFoundError(
+            f"Missing {len(missing)} frozen TGLC aperture curves; "
+            f"expected _{POLICY_NAME}.csv suffix; first missing: {missing[0]}"
+        )
     names=selected.planet.astype(str).tolist()
     if args.ps_live_csv:
         live=pd.read_csv(args.ps_live_csv)
@@ -254,7 +282,7 @@ def main():
                 raise ValueError(
                     f"No unique NASA PS updated ephemeris for {name}"
                 )
-            path=args.private_dir/f"{tic}_sector_{int(entry['sector']):02d}.csv"
+            path=curve_path(tic,entry["sector"],args.private_dir)
             if not path.is_file():
                 raise FileNotFoundError(path)
             curve=pd.read_csv(path)
@@ -270,6 +298,11 @@ def main():
         except Exception as exc:
             failures.append({"tic_id":tic,"planet":name,"error":repr(exc)})
             print(f"[FAIL] {tic}: {exc}",flush=True)
+    if not rows:
+        raise RuntimeError(
+            "All ephemeris records failed; no empty success reports "
+            "or scientific timing counts will be written"
+        )
     df=pd.DataFrame(rows)
     df.to_csv(args.outdir/"per_host_ephemeris_audit.csv",index=False)
     pd.DataFrame(failures,columns=[
