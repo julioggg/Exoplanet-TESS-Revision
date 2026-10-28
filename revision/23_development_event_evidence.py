@@ -327,10 +327,9 @@ def evaluate_one(source,qa,private):
             one_grid["BLS_power_white_noise_surrogate"]/original_power
         ) if original_power>0 else np.nan,
         "n_dominant_transit_box_points_removed":n_removed,
-        "fixed_period_BLS_power_after_one_event_removed":cfpower,
-        "post_removal_to_original_BLS_power_ratio":(
-            # Historical field name retained for report compatibility,
-            # but numerator/denominator are BOTH one-period re-fits.
+        "one_period_BLS_power_after_one_event_removed":cfpower,
+        "post_removal_to_unmasked_1x1_BLS_power_ratio":(
+            # Numerator and denominator are BOTH one-period re-fits.
             float(cfpower/one_grid["BLS_power_white_noise_surrogate"])
             if n_removed and one_grid["BLS_power_white_noise_surrogate"]>0
             else np.nan
@@ -366,13 +365,14 @@ def main():
     output=[]
     all_events=[]
     failures=[]
-    for r in source.to_dict("records"):
+    for count,r in enumerate(source.to_dict("records"),1):
         try:
+            print(f"[START {count:02d}/36] {r['tic_id']}: exact BLS-grid replay",flush=True)
             row,events=evaluate_one(r,row_by_tic[str(r["tic_id"])],
                                     args.private_dir)
             output.append(row)
             all_events.append(events)
-            ratio=row["post_removal_to_original_BLS_power_ratio"]
+            ratio=row["post_removal_to_unmasked_1x1_BLS_power_ratio"]
             print(
                 f"[{len(output):02d}/36] {r['tic_id']}: "
                 f"events local_positive={row['n_cycles_with_positive_local_depth']}, "
@@ -478,7 +478,7 @@ def main():
             "largest_positive_event_weight_share",
             "fraction_inbox_TGLC_flagged",
             "n_dominant_transit_box_points_removed",
-            "post_removal_to_original_BLS_power_ratio"
+            "post_removal_to_unmasked_1x1_BLS_power_ratio"
         ]].round(5).to_string(index=False),
         "", "## Interpretation",
         *["- "+s for s in config["limitations"]],
