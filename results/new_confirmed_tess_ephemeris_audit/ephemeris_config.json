@@ -1,0 +1,19 @@
+{
+  "snapshot_source": "NASA Exoplanet Archive PS current default rows",
+  "metadata_query_url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Cpl_orbper%2Cpl_orbpererr1%2Cpl_orbpererr2%2Cpl_tranmid%2Cpl_tranmiderr1%2Cpl_tranmiderr2%2Cpl_tsystemref%2Cpl_trandur%2Cttv_flag%2Cdefault_flag+from+ps+where+default_flag%3D1+and+pl_name+in+%28%27GJ+3090+b%27%2C%27HIP+113103+b%27%2C%27HIP+67522+b%27%2C%27LHS+1815+b%27%2C%27TIC+117642575+b%27%2C%27TIC+77552382+b%27%2C%27TIC+9344899+b%27%2C%27TOI-2184+b%27%2C%27TOI-2200+b%27%2C%27TOI-2384+b%27%2C%27TOI-2518+b%27%2C%27TOI-2654+b%27%2C%27TOI-421+b%27%2C%27TOI-4214+b%27%2C%27TOI-544+b%27%2C%27TOI-559+b%27%2C%27TOI-837+b%27%2C%27TOI-954+b%27%29&format=csv",
+  "nasa_ephemeris_snapshot_sha256": "a94e3463ba54292a30ff138e59356f234359808c9b710dc20343fe7fd0a3fa8d",
+  "frozen_catalogue_period_and_epoch_NOT_updated": true,
+  "BJD_to_BTJD_offset": 2457000.0,
+  "phase_scoring_restricted_to_explicit_BJD-TDB": true,
+  "sigma_prediction_ignores_T0_P_covariance_and_TTV": true,
+  "timing_score_rule": "only direct BLS period and abs(phase offset)<=duration/2+3*sigma",
+  "timing_uncertainty_eligibility": "sigma_pred <= duration/2; no TTV; unchanged period",
+  "in_sector_predicted_transits_not_necessarily_observed": true,
+  "selection_or_BLS_tuning_performed": false,
+  "n_host_sources_expected": 18,
+  "n_host_sources_audited": 18,
+  "n_host_sources_failed": 0,
+  "n_with_strictly_scoreable_timing": 6,
+  "n_with_strict_scoreable_BLS_period_and_epoch_match": 3,
+  "not_a_formal_detector_true_positive_rate": true
+}
