@@ -197,8 +197,10 @@ def physical_model(t,config,transit_model):
     profile=np.asarray(profile,dtype=float)
     if profile.shape!=t.shape or not np.isfinite(profile).all():
         raise ValueError("Invalid physical transit profile")
-    if profile.min()>=1. or profile.min()<=0.:
-        raise ValueError("Synthetic transit profile has no valid dips")
+    if profile.min()<=0.:
+        raise ValueError("Synthetic transit profile contains unphysical nonpositive flux")
+    # An injected planet may have NO observed transit in a selected sector.
+    # Record this as zero coverage rather than rejecting/replacing the trial.
     return profile,meta
 
 
@@ -323,11 +325,8 @@ def main():
                 n_covered=count_sampled_injected_events(
                     t,profile,cfg["true_period_days"],meta["t0"]
                 )
-                if n_covered<1:
-                    raise ValueError(
-                        "Unexpected no supported synthetic transit cycle; "
-                        "do not resample a more favorable epoch"
-                    )
+                # Zero observed injected cycles are retained as scientific
+                # nonrecoveries, never resampled to a more convenient epoch.
                 completed.append({
                     "tic_id":tic,
                     "sector":int(star["sector"]),
@@ -452,6 +451,7 @@ def main():
         "frozen_36_hosts_used":36,
         "locked_18_holdout_opened":False,
         "n_trials":108,
+        "zero_coverage_injections_retained_in_denominator":True,
         "injections_per_TIC":3,
         "random_seed":SEED,
         "injection_radius_ratios":RADIUS_RATIOS,
@@ -482,6 +482,7 @@ def main():
             "Period and depth are crossed in a balanced 3x3 design; each TIC supplies only 3/9 cells.",
             "These are the 36 previously inspected development stars.",
             "In-sector original planet signals may compete with injected signals.",
+            "Injected trials with no in-sector sampled transit remain in denominator.",
             "Original photometry and time sampling is unchanged; no true negatives.",
             "A recovered injected period is not equivalent to a calibrated planet detection.",
             "Empirical noise-only false-alarm rate is NOT reported.",
