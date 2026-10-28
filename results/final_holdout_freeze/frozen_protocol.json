@@ -1,0 +1,92 @@
+{
+  "BLS_noise_method": "1.4826*MAD(diff(flux))/sqrt(2)",
+  "blind_candidate_choice": "highest unfiltered BLS power",
+  "decision_score_formula": "log1p(BLS_power) * sqrt(min(n_positive_local_events,4)/4) * sqrt(1-TGLC_nonzero_fraction) * sqrt(clip(leave_one_event_remaining_1x1_BLS_power_ratio,0,1))",
+  "development_metadata_sha256": "b8eb54a65a2f28c6998d905e28a7315b751d120bb1d2123b511d395c90388ff1",
+  "duration_grid_days": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25
+  ],
+  "excluded_old_369_source_tics_sha256": "eaf7f6c9389922754e9dea2ab3768f317b35bf468a332621c425487a5ea2e173",
+  "excluded_prior_18_source_tics_sha256": "c36121462f71a1237414e52e83e688eb06e2d8a2bd473e3543a5dd8229359186",
+  "experiment": 27,
+  "final_test_permitted_only_once": true,
+  "final_test_primary_descriptive_endpoint": "known-host blind BLS period within 2 percent of NASA orbital period",
+  "frozen_data_hashes": {
+    "results/development_paired_score_audit/paired_audit_report.md": "ae751557bf48af3eca66526e099bf583bd7708a51ea269238a955fca37b330a6",
+    "results/development_surrogate_null/calibration_and_internal_audit.csv": "021a04c8d6c4d1403f86fc02b113b82db8602eb041bb0edc2892cb19d7ca8bab",
+    "results/development_surrogate_null/null_protocol.json": "fbe9cddcacfac4202bda88ba6bc2129cae5c8b677ba7115557e4383305b7a018",
+    "results/development_surrogate_null/per_surrogate_null.csv": "b757c64b21e13d6231764178d662a5c2fddf05cea6b56c7d5049d511648efc29",
+    "results/future_tess_cohorts/LOCKED_DO_NOT_ANALYZE_holdout_products.csv": "2f56355e694a0959a311529f2bd56601145effdc34e2f6b6356d4e260f3567b4",
+    "results/future_tess_cohorts/development_products.csv": "b8eb54a65a2f28c6998d905e28a7315b751d120bb1d2123b511d395c90388ff1"
+  },
+  "frozen_photometry_policy": "TGLC_APERTURE_1800S_V1",
+  "frozen_sources_hashes": {
+    "revision/14_build_uniform_aperture_curves.py": "11a6ba263d54526e4be78c2d04e890082fd811b9bd59dd705983fa50dee82901",
+    "revision/16_acquire_frozen_new_hosts.py": "d61919b2074eb655efa8e1a35d93b9cb20bf0f6baffa8ceaab8202cae4fd12d5",
+    "revision/23_development_event_evidence.py": "4f97b7d316508b2dda96c89a99212dba40c32ea6f023d22867e1ceee0be87e8d",
+    "revision/25_development_surrogate_null_calibration.py": "15faf21f2c2c847b65c2b3a7d46625b91c5be6736772f98fe69afd11bddf420c",
+    "revision/26_paired_development_score_audit.py": "c3f293e9ddd78a1ace2288c3af7eced950b23b94252c8bd28584642c4bfc2472",
+    "revision/28_final_host_benchmark.py": "581783db8cc3aed784c38559dcea39b6394654c22ebde73476c3096e523931e6"
+  },
+  "holdout_cleaned_private_path": "~/exoplanet_revision/data/final_holdout_cleaned",
+  "host_positive_not_necessarily_in_sector_visible": true,
+  "locked_holdout_metadata_sha256": "2f56355e694a0959a311529f2bd56601145effdc34e2f6b6356d4e260f3567b4",
+  "locked_holdout_tics": [
+    "TIC_235078021",
+    "TIC_98796344",
+    "TIC_305048087",
+    "TIC_408416746",
+    "TIC_255685030",
+    "TIC_39414571",
+    "TIC_451645081",
+    "TIC_118327550",
+    "TIC_144193715",
+    "TIC_359271092",
+    "TIC_453211454",
+    "TIC_317548889",
+    "TIC_231077395",
+    "TIC_259377017",
+    "TIC_317483660",
+    "TIC_29960110",
+    "TIC_176314383",
+    "TIC_54962195"
+  ],
+  "main_thresholds": {
+    "multievent_evidence": 5.329805494852721,
+    "raw_log_power": 10.93563724046706
+  },
+  "n_development_tics": 36,
+  "n_final_host_tics": 18,
+  "no_fits_or_photometric_holdout_access_in_freeze": true,
+  "no_hyperparameter_tuning_on_holdout": true,
+  "no_precise_ephemeris_metric_for_unresolved_BJD": true,
+  "no_real_astrophysical_false_positive_rate_claim": true,
+  "no_refit_on_holdout": true,
+  "no_specificity_AUC_or_FAP_claim": true,
+  "no_true_planet_detection_sensitivity_claim": true,
+  "period_search_grid": [
+    0.5,
+    15.0,
+    4000
+  ],
+  "planned_first_only_final_output": "results/final_holdout_benchmark",
+  "planned_holdout_acquisition_folder": "results/final_holdout_acquisition",
+  "planned_holdout_photometry_folder": "results/final_holdout_photometry",
+  "ready_for_first_final_test": true,
+  "secondary_endpoints": [
+    "blind period half/double alias",
+    "number of BLS periods correctly matched AND passing raw threshold",
+    "number of BLS periods correctly matched AND passing evidence threshold",
+    "number of wrong BLS periods passing each threshold",
+    "predeclared 3-bin orbital period stratification",
+    "exact 95 percent binomial interval on 18 host period agreements"
+  ],
+  "selected_TGLC_source": "original 1800s primary mission 1-26",
+  "stage": "PRE-FIRST-FINAL-HOLDOUT-FLUX FREEZE",
+  "threshold_rule": "score STRICTLY GREATER THAN threshold",
+  "thresholds_derived_only_from": "experiment-25 original 24-development-host surrogate calibration"
+}
