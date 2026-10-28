@@ -1,0 +1,22 @@
+{
+  "study": "Exoplanet TESS frozen first independent 18-host benchmark",
+  "experiment": 29,
+  "type": "READ_ONLY_PUBLICATION_SYNTHESIS",
+  "no_BLS_rerun": true,
+  "no_fits_or_private_flux_read": true,
+  "no_detector_refit": true,
+  "final_holdout_results_unchanged": true,
+  "frozen_source_code_unchanged": true,
+  "original_final_one_shot_commit": "66446fe",
+  "input_hashes_sha256": {
+    "results/final_holdout_freeze/frozen_protocol.json": "805a6e5261176a2c392cefa218172112a48333f3c7f43a2029d3134c3bf1c55e",
+    "results/final_holdout_benchmark/final_per_host_scored.csv": "7b816c3c896f7e7fbbc945134babd9e219b2173f8cf35d41bffc834d91c3aa1a",
+    "results/final_holdout_benchmark/final_blind_predictions.csv": "5e9b60e927046dbb366ec14b18c7615a3ece07ce16eac3a66204464c5cec35cd",
+    "results/final_holdout_benchmark/final_results_protocol.json": "bccd48f3ce10985f7c1c428963df02ab990e3fcebf17fdb1f56ceb5ba2f22ff8",
+    "results/development_multievent_bls/development_aggregate.csv": "3873c56f6ccc71a7c2960d436c98e09ec9d0733c6e7ce9715fd4ac6d0eaf897b",
+    "results/development_physical_injection/physical_injection_aggregate.csv": "49ce2a757be906477872913b358b2282df54ce614aa93e973be18d4f1095471d",
+    "results/development_physical_injection/physical_injection_marginal.csv": "23783a6ca9c5e7b12fc67c6a5c3722b2ddc9cbf9244b4dcccd91b514c1bd5026",
+    "results/development_surrogate_null/calibration_and_internal_audit.csv": "021a04c8d6c4d1403f86fc02b113b82db8602eb041bb0edc2892cb19d7ca8bab",
+    "results/development_paired_score_audit/paired_audit_protocol.json": "e62956de2a134903e699f730041d49cdbe54d9b67cd4d7e064771a2b3663baa3"
+  }
+}

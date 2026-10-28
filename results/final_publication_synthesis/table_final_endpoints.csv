@@ -1,0 +1,6 @@
+endpoint,n,denominator_n_hosts,descriptive_fraction
+BLS period concordant with known host (2%),4,18,0.2222222222222222
+Correct period AND conventional raw threshold,0,18,0.0
+Correct period AND fixed evidence threshold,2,18,0.1111111111111111
+Wrong period AND conventional raw threshold,2,18,0.1111111111111111
+Wrong period AND fixed evidence threshold,0,18,0.0
