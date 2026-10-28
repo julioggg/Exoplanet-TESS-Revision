@@ -8,7 +8,10 @@ No catalogue planet period/epoch is ever supplied to BLS.
 Each ORIGINAL MAST TGLC 1800s aperture light curve is left unchanged.
 Three deterministic injected versions are generated from this same baseline:
   radius ratio k = 0.03, 0.06, 0.12;
-  injection period sampled in each of 1.5-3.5, 3.5-6.5, 6.5-9.5 day bins.
+  injection period in each of 1.5-3.5, 3.5-6.5, 6.5-9.5 day bins;
+  3x3 Latin-square schedule using prior frozen TIC selection rank.
+This makes orbital-period stratum and injected radius ratio independently
+balanced (12 trials per 3x3 cell), while using only 3 trials per TIC.
 Synthetic PHYSICAL profiles use the unchanged PyTransit RoadRunner function
 from experiment 06: quadratic limb darkening and finite-exposure sampling,
 but an explicitly ASSUMED solar-like star, not observed stellar parameters.
@@ -99,6 +102,11 @@ def curves_verified(selected,acquired,qa,prior,private):
         raise ValueError("Repeated TIC in upstream development table")
     if not all(set(d.tic_id)==set(selected.tic_id) for d in tables):
         raise ValueError("Inconsistent development TIC membership")
+    if (
+        set(selected.selection_rank.astype(int))!=set(range(1,37))
+        or selected.selection_rank.duplicated().any()
+    ):
+        raise ValueError("Frozen development selection_rank 1..36 is required")
     if not selected.role.astype(str).eq("development").all():
         raise ValueError("Attempt to access non-development TIC")
     if selected.is_frozen_test_tic.astype(str).str.lower().eq("true").any():
@@ -154,11 +162,14 @@ def read_one(selected,qa,prior,private):
     return t,f,flags,sha256(path)
 
 
-def injection_config(tic,level):
+def injection_config(tic,level,selection_rank):
     if level not in (0,1,2):
         raise ValueError("Expected one of 3 fixed synthetic planet levels")
+    if not 1<=int(selection_rank)<=36:
+        raise ValueError("Invalid frozen 36-TIC selection rank")
     rng=rng_for(tic,level)
     lo,hi=PERIOD_RANGES[level]
+    radius_idx=(int(selection_rank)-1+level)%3
     period=float(rng.uniform(lo+.05,hi-.05))
     # Choose epoch safely within the observed span, with no knowledge of
     # catalogue ephemerides, source transit labels or BLS outputs.
@@ -168,7 +179,8 @@ def injection_config(tic,level):
         "injection_bin":f"{lo:.1f}-{hi:.1f}",
         "injection_level":level,
         "true_period_days":period,
-        "radius_ratio":float(RADIUS_RATIOS[level]),
+        "radius_ratio":float(RADIUS_RATIOS[radius_idx]),
+        "radius_level":int(radius_idx),
         "impact_parameter":impact,
         "phase_0_to_1":phase
     }
@@ -255,8 +267,8 @@ def influence_at_blind_period(t,flux,flags,candidate,noise,helper):
 
 def star_bootstrap_ci(frame,col,seed=SEED,n_boot=CI_BOOTSTRAPS):
     """Resample source TIC, not multiple injections as independent targets."""
-    if frame.tic_id.nunique()!=36 or frame.tic_id.duplicated().any():
-        raise ValueError("Expected exactly one injected trial per source/level")
+    if frame.tic_id.duplicated().any() or len(frame)<5:
+        raise ValueError("Each bootstrap cell requires >=5 distinct source TICs")
     rng=np.random.default_rng(seed)
     x=frame[col].astype(int).to_numpy()
     n=len(x)
@@ -291,7 +303,7 @@ def main():
             )
             noise=helper.robust_noise(flux)
             for level in range(3):
-                cfg=injection_config(tic,level)
+                cfg=injection_config(tic,level,star["selection_rank"])
                 profile,meta=physical_model(t,cfg,original.transit_model)
                 injected=flux*profile
                 # Re-use the unmodified star's point-to-point noise estimate
@@ -372,12 +384,16 @@ def main():
         raise ValueError("Injected synthetic pair IDs not unique")
     frame.to_csv(args.outdir/"per_injection_trial.csv",index=False)
     agg=[]
-    for level,sub in frame.groupby("injection_level"):
+    for (level,radius_level),sub in frame.groupby(
+        ["injection_level","radius_level"],sort=True
+    ):
         lo,hi=star_bootstrap_ci(
-            sub,"injected_period_direct_match_2pct",SEED+level
+            sub,"injected_period_direct_match_2pct",
+            SEED+int(level)*10+int(radius_level)
         )
         agg.append({
             "injection_level":int(level),
+            "radius_level":int(radius_level),
             "radius_ratio":float(sub.radius_ratio.iloc[0]),
             "period_stratum":sub.injection_bin.iloc[0],
             "n_unique_source_TICs":sub.tic_id.nunique(),
@@ -398,7 +414,38 @@ def main():
             ),
         })
     aggregate=pd.DataFrame(agg)
+    if (
+        len(aggregate)!=9 or len(frame)!=108
+        or aggregate.n_trials.ne(12).any()
+        or frame.tic_id.nunique()!=36
+        or frame.groupby("tic_id").size().ne(3).any()
+    ):
+        raise ValueError("3x3 depth-period Latin-square design drift")
     aggregate.to_csv(args.outdir/"physical_injection_aggregate.csv",index=False)
+    marginal=[]
+    for dim in ("injection_bin","radius_ratio"):
+        for value,sub in frame.groupby(dim,sort=True):
+            ci=star_bootstrap_ci(
+                sub,"injected_period_direct_match_2pct",
+                SEED+100+len(marginal)
+            )
+            marginal.append({
+                "factor":dim,
+                "value":str(value),
+                "n_stars":sub.tic_id.nunique(),
+                "n_trials":len(sub),
+                "direct_count":int(
+                    sub.injected_period_direct_match_2pct.sum()
+                ),
+                "direct_fraction":float(
+                    sub.injected_period_direct_match_2pct.mean()
+                ),
+                "tic_bootstrap95_low":float(ci[0]),
+                "tic_bootstrap95_high":float(ci[1]),
+            })
+    pd.DataFrame(marginal).to_csv(
+        args.outdir/"physical_injection_marginal.csv",index=False
+    )
     config={
         "experiment":24,
         "role":"DEVELOPMENT physical injection-recovery, not final validation",
@@ -408,6 +455,8 @@ def main():
         "injections_per_TIC":3,
         "random_seed":SEED,
         "injection_radius_ratios":RADIUS_RATIOS,
+        "balanced_3x3_latin_square_12_per_period_depth_cell":True,
+        "depth_assignment":"((frozen selection_rank -1)+ period_level) % 3",
         "injection_period_ranges_days":PERIOD_RANGES,
         "injection_model":"RoadRunner PyTransit quadratic limb darkening",
         "stellar_assumptions":"Mstar=1Msun, Rstar=1Rsun (not observed)",
@@ -430,7 +479,7 @@ def main():
         "prior_development_comparison_sha256":sha256(PRIOR),
         "limitations":[
             "Synthetic solar-star transit population, not actual planet radii or stellar models.",
-            "Radii and orbital-period strata are paired by design, not independently factorial.",
+            "Period and depth are crossed in a balanced 3x3 design; each TIC supplies only 3/9 cells.",
             "These are the 36 previously inspected development stars.",
             "In-sector original planet signals may compete with injected signals.",
             "Original photometry and time sampling is unchanged; no true negatives.",
@@ -450,6 +499,8 @@ def main():
         "population transit-detection completeness.",
         "",
         aggregate.to_string(index=False),
+        "", "## Marginal summaries (36 source TICs per factor level)",
+        pd.DataFrame(marginal).to_string(index=False),
         "", "## Integrity and interpretation", "",
         *["- "+q for q in config["limitations"]],
         "- All 18 LOCKED holdout stellar light curves remain unaccessed."
