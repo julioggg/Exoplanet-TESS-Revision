@@ -171,6 +171,13 @@ def plan(queue, search_result_getter, excluded, query_cap, pause=0.0):
     selected=pd.DataFrame(chosen)
     checked=pd.DataFrame(audit)
     if not selected.empty:
+        # Each role is a separately frozen cohort; acquisition script 16
+        # requires a unique selection_rank in EACH exported CSV. It must
+        # not depend on the period-bin-local order.
+        selected.insert(
+            0,"selection_rank",
+            selected.groupby("role",sort=False).cumcount()+1
+        )
         if selected.tic_id.duplicated().any():
             raise AssertionError("Duplicate selected TIC")
         if set(selected.tic_id)&excluded:
