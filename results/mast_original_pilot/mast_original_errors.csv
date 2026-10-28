@@ -1,5 +1,1 @@
 pair_id,label_from_old_catalogue_not_verified,tic_id,sector,error
-P0002,0,TIC_144285389,2,ValueError('Insufficient science rows: 0')
-P0002,1,TIC_183532609,2,ValueError('Insufficient science rows: 0')
-P0013,0,TIC_144415503,7,ValueError('Insufficient science rows: 0')
-P0013,1,TIC_22598327,7,ValueError('Insufficient science rows: 0')

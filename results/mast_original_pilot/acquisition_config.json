@@ -1,9 +1,9 @@
 {
   "goal": "original FITS acquisition feasibility, not model validation",
   "n_pairs_requested": 2,
-  "n_pairs_both_verified": 0,
-  "n_fits_verified": 0,
-  "n_errors": 4,
+  "n_pairs_both_verified": 2,
+  "n_fits_verified": 4,
+  "n_errors": 0,
   "author": "TGLC",
   "exptime_seconds": 1800,
   "files_live_outside_repository": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/data/mast_original_pilot",
