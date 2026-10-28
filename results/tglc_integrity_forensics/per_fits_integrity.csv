@@ -1,0 +1,5 @@
+tic_id,sector,pair_id,n_raw,n_time_finite,n_tess_default_good,n_time_and_tess_good,n_tglc_flags_nonzero,n_corrected_joint_positive,n_all_four_joint_positive,n_corrected_psf_only_good,n_corrected_aperture_only_good,n_unprocessed_psf_good,n_unprocessed_aperture_good
+TIC_144285389,2,P0002,1245,1245,1196,1196,297,0,0,0,1196,0,1196
+TIC_183532609,2,P0002,1245,1245,1196,1196,309,1196,1196,0,0,1196,1196
+TIC_144415503,7,P0013,1093,1093,1086,1086,37,1086,1086,0,0,1086,1086
+TIC_22598327,7,P0013,1093,1093,1086,1086,30,1086,1086,0,0,1086,1086

@@ -1,0 +1,3 @@
+pair_id,sector,tic_a,tic_b,n_quality_good_a,n_quality_good_b,n_common_cadence_nums,cadence_num_jaccard,n_common_all_four_corrected_valid,median_absolute_time_offset_seconds,median_signed_time_offset_seconds,range_time_offset_seconds,timing_comparison_is
+P0002,2,TIC_144285389,TIC_183532609,1196,1196,1196,1.0,0,13.26237020912231,1.0363090666942298,50.30336830968736,same TESS cadence identifier; BTJD differs per target
+P0013,7,TIC_144415503,TIC_22598327,1086,1086,1086,1.0,1086,80.45887295229477,80.45887295229477,46.479389836167684,same TESS cadence identifier; BTJD differs per target

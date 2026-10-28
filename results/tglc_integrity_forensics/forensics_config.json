@@ -1,0 +1,13 @@
+{
+  "source_manifest": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/repo/results/mast_original_pilot/verified_original_fits.csv",
+  "n_original_fits": 4,
+  "n_success": 4,
+  "n_errors": 0,
+  "original_fits_bytes_changed": false,
+  "flux_fallback_applied": false,
+  "quality_masks_changed": false,
+  "classification_or_BLS_fitted": false,
+  "selection_used_catalogue_label": false,
+  "timestamp_matching_method": "cadence_num",
+  "recommended_followup": "Predeclare the same photometric channel and source quality policy for ALL new TICs; use originals only."
+}
