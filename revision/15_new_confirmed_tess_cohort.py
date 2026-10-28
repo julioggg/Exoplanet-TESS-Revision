@@ -97,6 +97,15 @@ def previous_tics():
     if "tic_id" not in prior:
         raise ValueError("Previous dataset lacks tic_id; cannot exclude")
     tics = {normalized_tic(x) for x in prior.tic_id}
+    # Also exclude the four original-MAST engineering targets even if a
+    # later dataset refactor no longer includes every old positive.
+    engineering_manifest = (
+        ROOT / "results/mast_original_pilot/verified_original_fits.csv"
+    )
+    if engineering_manifest.is_file():
+        used = pd.read_csv(engineering_manifest, dtype={"tic_id":str})
+        if "tic_id" in used:
+            tics.update(normalized_tic(v) for v in used.tic_id)
     tics.discard("")
     if len(tics) < 300:
         raise ValueError(
