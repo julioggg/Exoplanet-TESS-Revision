@@ -11,6 +11,8 @@ import importlib.util
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
+import tempfile
 
 SCRIPT=Path(__file__).with_name("17_blind_confirmed_host_period_recovery.py")
 spec=importlib.util.spec_from_file_location("period_scan17",SCRIPT)
@@ -19,6 +21,30 @@ spec.loader.exec_module(mod)
 
 
 def main():
+    with tempfile.TemporaryDirectory() as tmp:
+        root=Path(tmp)
+        expected=mod.curve_path("TIC_90012345",7,root)
+        assert expected.name == (
+            "TIC_90012345_sector_07_TGLC_APERTURE_1800S_V1.csv"
+        )
+        if expected.exists():
+            raise AssertionError("Test curve unexpectedly exists")
+        try:
+            mod.load_curve("TIC_90012345",7,root)
+        except FileNotFoundError:
+            pass
+        else:
+            raise AssertionError("Missing frozen-policy input not detected")
+        pd.DataFrame({
+            "time_btjd":np.arange(500)/48+1500,
+            "flux_cal_aper_normalized":np.ones(500),
+            "cadence_num":np.arange(500),
+            "tess_flags":np.zeros(500),
+            "tglc_flags":np.zeros(500),
+        }).to_csv(expected,index=False)
+        verified=mod.load_curve("TIC_90012345",7,root)
+        assert len(verified)==500
+    print("[PASS] Policy-14 exact cleaned CSV naming convention")
     true_period=3.4
     rng=np.random.default_rng(20261027)
     t=1500 + np.arange(1200)/48.0
