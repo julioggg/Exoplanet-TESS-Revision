@@ -1,0 +1,40 @@
+{
+  "design": "FROZEN blind BLS period recovery on 18 new confirmed hosts",
+  "source_cohort": "experiment 15, exactly 18 new distinct TICs",
+  "frozen_selection_sha256": "c36121462f71a1237414e52e83e688eb06e2d8a2bd473e3543a5dd8229359186",
+  "verified_fits_manifest_sha256": "cbaec2898f926f03deb3805dea1bd1c8b015fb11af352993368448b5fbefaa52",
+  "uniform_qa_csv_sha256": "bc8f45829a1cb8558a3a7f6ddf45a2c2c368e59fcb4234d5a631680abb0685d9",
+  "photometric_policy": "TGLC_APERTURE_1800S_V1",
+  "BLS_input_truth_or_epoch": false,
+  "blind_period_grid": [
+    0.5,
+    15.0,
+    4000
+  ],
+  "blind_duration_days": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25
+  ],
+  "BLS_noise": "MAD(diff(normalized flux))*1.4826/sqrt(2), a white-noise surrogate",
+  "primary_metric": "direct period within 2% of NASA default solution",
+  "additional_metric": "half- and double-period alias, separately",
+  "phase_timing_scored": false,
+  "classification_AUC_or_specificity_scored": false,
+  "no_BLS_threshold_applied": true,
+  "selection_after_inspecting_period_results": false,
+  "n_source_TICs_expected": 18,
+  "n_source_TICs_scanned": 0,
+  "n_source_TICs_failed": 18,
+  "cautions": [
+    "This is positive-host-only period concordance, not planet validation.",
+    "A close orbital-period match may arise from correlated noise or chance.",
+    "An in-sector transit is not established by a NASA planet-host flag.",
+    "No statistically calibrated false alarm rate can be derived here.",
+    "The NASA archive snapshot was frozen before downloading these curves.",
+    "Timing reference and propagated ephemeris uncertainties not yet audited.",
+    "New independent samples required for future detector tuning."
+  ]
+}
