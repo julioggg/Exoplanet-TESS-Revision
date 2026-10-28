@@ -1,0 +1,4 @@
+period_stratum,n_hosts,global_direct,multievent_direct,multievent_found
+1.5-3.5,12,3,2,12
+3.5-6.5,12,2,1,10
+6.5-9.5,12,1,0,10

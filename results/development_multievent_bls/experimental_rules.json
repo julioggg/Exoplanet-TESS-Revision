@@ -1,0 +1,41 @@
+{
+  "experiment": "21",
+  "role": "MODEL DEVELOPMENT ONLY; NOT AN INDEPENDENT FINAL TEST",
+  "sources": 36,
+  "locked_holdout_FITS_opened": false,
+  "previous_18_host_TICs_used_to_fit_detector": false,
+  "selection_sha256": "b8eb54a65a2f28c6998d905e28a7315b751d120bb1d2123b511d395c90388ff1",
+  "acquisition_manifest_sha256": "b83b1e6639a2e004113ca9039216fa26da193416ef7b477609348ed0714095b3",
+  "photometry_summary_sha256": "8c581915a4a421ed610d9b7628a7c663bb1ae6dcdfe7336d700e8ebcc62fd62d",
+  "policy": "TGLC_APERTURE_1800S_V1",
+  "BLS_period_grid": [
+    0.5,
+    15.0,
+    4000
+  ],
+  "BLS_durations_days": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25
+  ],
+  "min_distinct_2_cadence_events": 3,
+  "min_positive_depth_events": 3,
+  "max_one_event_positive_depth_share": 0.6,
+  "max_in_box_nonzero_TGLC_flags_fraction": 0.2,
+  "rank": "descending original BLS power, first passing event support",
+  "inspects_all_grid_periods_without_NASA_ephemeris": true,
+  "planet_period_is_used_only_for_posthoc_matching": true,
+  "no_statistical_detection_threshold_calibrated": true,
+  "no_negative_or_false_alarm_rates": true,
+  "known_limitations": [
+    "Development sample is not an independent final evaluation.",
+    "Transit host membership does not prove observed sector contains planet transit.",
+    "Positive event depths computed against global out-of-box median may be distorted by trends.",
+    "Event coherence and TGLC flags are heuristic; threshold tuning requires separate controls.",
+    "BLS SNR assumes a white-noise surrogate, not calibrated physical significance.",
+    "Positive-host period agreement may occur by chance, and alias handling is descriptive.",
+    "No causal proof of planet signal, false-positive calibration or planet classification."
+  ]
+}
