@@ -323,16 +323,30 @@ def main():
         ka = set(np.rint(a * 2880).astype("int64"))
         kb = set(np.rint(b * 2880).astype("int64"))
         overlap = len(ka & kb)
+        names = {
+            str(entry["tic_id"]): str(entry.get("product_filename", ""))
+            for entry in manifest.to_dict("records")
+            if str(entry["pair_id"]) == str(pair)
+        }
+        def camera_ccd(tic):
+            m = re.search(r"cam([1-4])-ccd([1-4])", names.get(tic, ""))
+            return (int(m.group(1)), int(m.group(2))) if m else None
+        loc_a = camera_ccd(tics[0])
+        loc_b = camera_ccd(tics[1])
         pairs.append({
             "pair_id": pair, "sector": sector,
             "tic_a": tics[0], "tic_b": tics[1],
+            "camera_a": loc_a[0] if loc_a else np.nan,
+            "camera_b": loc_b[0] if loc_b else np.nan,
+            "ccd_a": loc_a[1] if loc_a else np.nan,
+            "ccd_b": loc_b[1] if loc_b else np.nan,
+            "same_camera_and_ccd": (
+                bool(loc_a == loc_b) if loc_a and loc_b else None
+            ),
             "n_a": len(ka), "n_b": len(kb),
             "n_matched_half_minute_bins": overlap,
             "jaccard_half_minute_bins": (
                 overlap / len(ka | kb) if len(ka | kb) else 0.0
-            ),
-            "camera_ccd_same": (
-                "not established: inspect original file names"
             ),
         })
     pd.DataFrame(pairs).to_csv(
