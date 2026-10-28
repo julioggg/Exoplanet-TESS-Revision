@@ -1,0 +1,37 @@
+{
+  "experiment": 22,
+  "source_experiment": 21,
+  "source_csv_sha256": "3dc372aed27d0d8d9a1054debb888d8c5d2f3e25b668edeb06a24bb9dfec4df4",
+  "source_rules_sha256": "652156de338c42a43535de5cf4bd727d78cbc15c8ec79ae8862eb16adf4e6738",
+  "analysis_role": "POST-HOC attribution on known DEVELOPMENT sample",
+  "no_model_fitting": true,
+  "no_BLS_rerun": true,
+  "no_new_thresholds_or_tuning": true,
+  "original_metrics_preserved": true,
+  "LOCKED_HOLDOUT_data_access": false,
+  "important_distinction": "Period estimate from the highest BLS peak and reliability of its repeated-event evidence are separate scientific outputs.",
+  "limits": [
+    "Paired exact McNemar p-value on 36 sources is exploratory.",
+    "This is not a confirmed transit-detection sensitivity estimate.",
+    "A failed 3-event gate may reflect valid two-transit coverage.",
+    "Not all planet-host observations show detectable transits.",
+    "No negative control stars or calibrated false alarm rates used."
+  ],
+  "aggregate": {
+    "n_stars": 36,
+    "baseline_direct_success": 6,
+    "multievent_direct_success": 3,
+    "absolute_multi_minus_original_percentage_points": -8.333333333333334,
+    "both_recover": 3,
+    "original_only_lost": 3,
+    "multievent_only_gained": 0,
+    "neither_recover": 30,
+    "paired_mcnemar_exact_two_sided_p_descriptive": 0.25,
+    "original_top_peak_passing_all_event_rules": 4,
+    "original_top_peaks_vetoed": 32,
+    "multievent_candidate_found": 32,
+    "multievent_alias_only_n": 3,
+    "lost_original_successes_by_TGLC_flag": 2,
+    "lost_original_successes_by_min_events": 1
+  }
+}
