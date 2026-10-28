@@ -1,0 +1,94 @@
+{
+  "experiment": 26,
+  "source_experiment": 25,
+  "source_tics_previously_explored": true,
+  "internal_audit_NOT_final_independent_test": true,
+  "original_24_TIC_calibration_thresholds_unchanged": true,
+  "calibration_scores_not_refitted": true,
+  "novel_detector_hyperparameters_not_tuned": true,
+  "no_additional_FITS_or_null_simulations": true,
+  "locked_18_host_holdout_not_accessed": true,
+  "bootstrap_resampling_unit": "TIC, with all 3 injections or 12 null surrogates retained as a block",
+  "source_cluster_exact_signflip_test": "exploratory only; 12 host clusters, not 144 independent nulls",
+  "results": {
+    "analysis_role": "exploratory paired INTERNAL DEVELOPMENT audit",
+    "n_host_TIC_clusters": 12,
+    "n_surrogate_null_trials": 144,
+    "n_physical_injection_trials": 36,
+    "frozen_raw_log_power_threshold": 10.93563724046706,
+    "frozen_evidence_threshold": 5.329805494852721,
+    "surrogate_exceedance_raw": 31,
+    "surrogate_exceedance_evidence": 6,
+    "surrogate_exceedance_raw_fraction": 0.2152777777777778,
+    "surrogate_exceedance_evidence_fraction": 0.041666666666666664,
+    "surrogate_difference_paired_cluster": {
+      "mean_source_cluster_difference": -0.17361111111111113,
+      "bootstrap95_difference_low": -0.34722222222222227,
+      "bootstrap95_difference_high": -0.027777777777777776,
+      "n_distinct_host_clusters": 12,
+      "source_level_signflip_exact_p_exploratory": 0.09375
+    },
+    "physical_injections_with_correct_blind_period": 9,
+    "correct_period_and_raw_threshold": 0,
+    "correct_period_and_evidence_threshold": 7,
+    "all_injections_above_raw_threshold": 9,
+    "all_injections_above_evidence_threshold": 10,
+    "correct_period_and_accepted_difference_paired_cluster": {
+      "mean_source_cluster_difference": 0.19444444444444442,
+      "bootstrap95_difference_low": 0.05555555555555555,
+      "bootstrap95_difference_high": 0.3333333333333333,
+      "n_distinct_host_clusters": 12,
+      "source_level_signflip_exact_p_exploratory": 0.0625
+    },
+    "raw_score_accepted_wrong_injection_periods": 9,
+    "evidence_score_accepted_wrong_injection_periods": 3,
+    "surrogate_exceedance_by_block": [
+      {
+        "block_cadences": 24,
+        "n_trials": 48,
+        "n_sources": 12,
+        "raw_exceedances": 11,
+        "evidence_exceedances": 1,
+        "raw_exceedance_fraction": 0.22916666666666666,
+        "evidence_exceedance_fraction": 0.020833333333333332,
+        "absolute_evidence_minus_raw": -0.20833333333333331
+      },
+      {
+        "block_cadences": 48,
+        "n_trials": 48,
+        "n_sources": 12,
+        "raw_exceedances": 8,
+        "evidence_exceedances": 1,
+        "raw_exceedance_fraction": 0.16666666666666666,
+        "evidence_exceedance_fraction": 0.020833333333333332,
+        "absolute_evidence_minus_raw": -0.14583333333333331
+      },
+      {
+        "block_cadences": 96,
+        "n_trials": 48,
+        "n_sources": 12,
+        "raw_exceedances": 12,
+        "evidence_exceedances": 4,
+        "raw_exceedance_fraction": 0.25,
+        "evidence_exceedance_fraction": 0.08333333333333333,
+        "absolute_evidence_minus_raw": -0.16666666666666669
+      }
+    ]
+  },
+  "SHA256": {
+    "per_surrogate_null": "b757c64b21e13d6231764178d662a5c2fddf05cea6b56c7d5049d511648efc29",
+    "prior_injected_scores": "24a7b4cddf7f30b1ba96ab3ac42fe6112908e1adb597632819678a56332d454f",
+    "original_thresholds": "021a04c8d6c4d1403f86fc02b113b82db8602eb041bb0edc2892cb19d7ca8bab",
+    "original_protocol": "fbe9cddcacfac4202bda88ba6bc2129cae5c8b677ba7115557e4383305b7a018"
+  },
+  "limitations": [
+    "The original stars, detection scores and null model have been examined during development.",
+    "Nulls are moving-block resamples of positive hosts; they may contain authentic transit fragments.",
+    "Repeated synthetic null draws from each host are dependent; unit of inference is TIC.",
+    "No inference of real astrophysical false-positive rate, true-negative specificity, or detection false-alarm probability.",
+    "Exact sign-flip p values are descriptive on 12 previously examined source clusters; cannot establish novelty or final validation.",
+    "The synthetic injection profiles used assumed solar host properties and may overlap real transit signals.",
+    "12 host clusters are insufficient for precise or broadly generalizable calibration.",
+    "A truly independent astrophysical-control cohort is still needed."
+  ]
+}
