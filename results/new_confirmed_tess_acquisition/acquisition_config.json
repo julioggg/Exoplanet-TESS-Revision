@@ -1,0 +1,40 @@
+{
+  "source_selection_csv": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/repo/results/new_confirmed_tess_inventory/selected_prospective_hosts.csv",
+  "source_selection_sha256": "c36121462f71a1237414e52e83e688eb06e2d8a2bd473e3543a5dd8229359186",
+  "frozen_cohort_size": 18,
+  "frozen_source_tics": [
+    "TIC_176956893",
+    "TIC_142105158",
+    "TIC_50618703",
+    "TIC_96925186",
+    "TIC_262530407",
+    "TIC_209459275",
+    "TIC_382602147",
+    "TIC_200805484",
+    "TIC_94986319",
+    "TIC_44792534",
+    "TIC_260004324",
+    "TIC_121490076",
+    "TIC_409594381",
+    "TIC_77552382",
+    "TIC_166527623",
+    "TIC_9344899",
+    "TIC_117642575",
+    "TIC_460205581"
+  ],
+  "sources_attempted": 18,
+  "sources_verified": 18,
+  "source_failures": 0,
+  "no_failed_source_replacement": true,
+  "only_preselected_mast_uris": true,
+  "no_lightcurve_reexport": true,
+  "product": "original TGLC 1800-second primary-mission FITS",
+  "next_policy": "TGLC_APERTURE_1800S_V1",
+  "science_fits_outside_git": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/data/new_confirmed_tess_original",
+  "notes": [
+    "Some confirmed hosts may have no transit observable in chosen sector.",
+    "A confirmed planet does not imply a model-detected transit.",
+    "No TIC is substituted for a failed acquisition or poor quality.",
+    "This acquisition step cannot validate exoplanet classifications."
+  ]
+}
