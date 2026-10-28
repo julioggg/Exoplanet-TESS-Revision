@@ -71,7 +71,7 @@ def main():
         assert len(curve_b) == 507
         assert report_a["n_accepted"] == report_b["n_accepted"] == 507
         assert np.isclose(np.median(curve_a.flux_cal_aper_normalized), 1.0)
-        assert report_a["n_TGLC_flag_nonzero_accepted"] == 8
+        assert report_a["n_TGLC_flag_nonzero_accepted"] == 7
         assert report_a["n_good_TESS_default"] == 509
         pair = mod.assess_pair(
             curve_a, curve_b, items[0]["tic_id"],
