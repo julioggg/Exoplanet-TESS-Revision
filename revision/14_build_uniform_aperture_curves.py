@@ -347,7 +347,7 @@ def main():
         "No per-target fallback is applied; aperture is mandatory for ALL.",
         "Barycentric timestamps are NEVER replaced with a matched source's times.",
         "TGLC_flags remain recorded to support future sensitivity checks.",
-        "The four development stars must not serve as a new heldout test set.",
+        "Sources inspected for method development must never be reused as an untouched final test set.",
     ]
     (args.outdir/"processing_report.md").write_text(
         "\n".join(report)+"\n", encoding="utf-8"
