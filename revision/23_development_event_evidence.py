@@ -41,6 +41,11 @@ SELECTED = ROOT / "results/future_tess_cohorts/development_products.csv"
 OUT = ROOT / "results/development_period_event_evidence"
 PRIVATE = Path.home() / "exoplanet_revision/data/new_tess_development_cleaned"
 POLICY = "TGLC_APERTURE_1800S_V1"
+# EXACT search grid from experiment 21; the phase discretization can depend
+# on the full period/duration search. A single-period BLS fit is not an
+# exact reconstruction of the periodogram peak.
+ORIGINAL_PERIOD_GRID = np.linspace(0.5, 15.0, 4000)
+ORIGINAL_DURATION_GRID = np.array([0.05, 0.10, 0.15, 0.20, 0.25])
 
 MIN_TWO_CADENCE_EVENTS = 2
 MIN_LOCAL_FLANK_POINTS = 4
@@ -68,8 +73,39 @@ def robust_noise(f):
     return noise
 
 
+def original_full_grid_bls(t, f, noise):
+    """Replay EXACT original blind BLS grid to reconstruct the original epoch.
+
+    Unlike a 1x1 BLS search, this uses the original five-duration phase
+    resolution. It never reads NASA periods or the holdout and NEVER
+    replaces any previously published period-recovery classification.
+    """
+    from astropy.timeseries import BoxLeastSquares
+    model = BoxLeastSquares(
+        t, f, dy=np.full(len(f), noise, dtype=float)
+    )
+    periodogram = model.power(
+        ORIGINAL_PERIOD_GRID, ORIGINAL_DURATION_GRID
+    )
+    powers = np.asarray(periodogram.power, dtype=float)
+    if len(powers) != len(ORIGINAL_PERIOD_GRID) or not np.isfinite(powers).any():
+        raise ValueError("Original BLS full-grid replay returned invalid values")
+    idx = int(np.nanargmax(powers))
+    return {
+        "period_days": float(periodogram.period[idx]),
+        "duration_days": float(periodogram.duration[idx]),
+        "transit_epoch_btjd": float(periodogram.transit_time[idx]),
+        "BLS_power_white_noise_surrogate": float(powers[idx]),
+        "original_best_index": idx,
+    }
+
+
 def same_period_bls(t, f, period, duration, noise):
-    """Reproduce the BLS phase at an already frozen period/duration ONLY."""
+    """A NEW 1x1 fixed-(P,d) phase refit for sensitivity analysis.
+
+    This is NOT an exact replay of the global periodogram's phase/power.
+    Only compare single-period fits to other single-period fits.
+    """
     from astropy.timeseries import BoxLeastSquares
     if not (np.isfinite(period) and np.isfinite(duration) and
             0 < duration < period):
@@ -230,23 +266,33 @@ def evaluate_one(source,qa,private):
     period=float(source["baseline_global_period_days"])
     duration=float(source["baseline_global_duration_days"])
     noise=robust_noise(f)
-    fit=same_period_bls(t,f,period,duration,noise)
-    # A fixed period and duration should reproduce the original best power
-    # to numerical tolerance; failures flag a dangerous BLS provenance drift.
+    # Replay the FULL exact original BLS search to recover its phase
+    # at the already-published maximum. This changes no period decision.
+    original=original_full_grid_bls(t,f,noise)
     original_power=float(source["baseline_global_power"])
-    if not np.isclose(fit["BLS_power_white_noise_surrogate"],original_power,
-                      rtol=2e-4,atol=1e-5):
+    if (
+        not np.isclose(original["period_days"],period,rtol=0,atol=1e-8)
+        or not np.isclose(original["duration_days"],duration,rtol=0,atol=1e-8)
+        or not np.isclose(original["BLS_power_white_noise_surrogate"],
+                           original_power,rtol=2e-6,atol=1e-5)
+    ):
         raise ValueError(
-            f"Fixed-period reconstruction of original BLS power differs "
-            f"for {tic}: fixed={fit['BLS_power_white_noise_surrogate']}, "
-            f"source={original_power}"
+            f"Full-grid BLS replay does not reproduce frozen original "
+            f"period/duration/power for {tic}: replay={original}; "
+            f"original_P={period}, original_D={duration}, "
+            f"original_power={original_power}"
         )
+    # A single-(P,d) BLS call has a different phase-grid construction;
+    # use its power ONLY as the denominator of an identical-method
+    # single-(P,d) fit after removing the strongest observed event.
+    one_grid= same_period_bls(t,f,period,duration,noise)
+    epoch=original["transit_epoch_btjd"]
     evidence,events=local_event_windows(
-        t,f,flags,period,fit["transit_epoch_btjd"],duration
+        t,f,flags,period,epoch,duration
     )
     cycle=evidence["dominant_positive_event_cycle"]
     keep,n_removed=leave_dominant_cycle_out(
-        t,f,fit["transit_epoch_btjd"],period,duration,cycle
+        t,f,epoch,period,duration,cycle
     )
     counterfactual=(
         same_period_bls(t[keep],f[keep],period,duration,noise)
@@ -271,14 +317,22 @@ def evaluate_one(source,qa,private):
             source["multievent_direct_match_2pct"]
         ),
         "source_curve_sha256":sha256(path),
-        "reconstructed_BLS_transit_epoch_btjd":fit["transit_epoch_btjd"],
-        "original_fixed_period_BLS_power":fit[
+        "reconstructed_BLS_transit_epoch_btjd":epoch,
+        "replayed_full_grid_BLS_power":original[
             "BLS_power_white_noise_surrogate"],
+        "one_period_fit_BLS_epoch_btjd":one_grid["transit_epoch_btjd"],
+        "one_period_fit_BLS_power":one_grid[
+            "BLS_power_white_noise_surrogate"],
+        "one_period_vs_full_grid_power_ratio":float(
+            one_grid["BLS_power_white_noise_surrogate"]/original_power
+        ) if original_power>0 else np.nan,
         "n_dominant_transit_box_points_removed":n_removed,
         "fixed_period_BLS_power_after_one_event_removed":cfpower,
         "post_removal_to_original_BLS_power_ratio":(
-            float(cfpower/fit["BLS_power_white_noise_surrogate"])
-            if n_removed and fit["BLS_power_white_noise_surrogate"]>0
+            # Historical field name retained for report compatibility,
+            # but numerator/denominator are BOTH one-period re-fits.
+            float(cfpower/one_grid["BLS_power_white_noise_surrogate"])
+            if n_removed and one_grid["BLS_power_white_noise_surrogate"]>0
             else np.nan
         ),
         "no_research_time_period_replacement":True,
@@ -356,8 +410,13 @@ def main():
         "original_global_BLS_period_estimate_changed":False,
         "frozen_original_direct_period_concordance":"6/36",
         "frozen_multievent_direct_period_concordance":"3/36",
-        "BLS_scan_grid_rerun":False,
-        "BLS_evaluation_only_at_frozen_period_and_duration":True,
+        "original_BLS_full_grid_replayed_for_epoch_provenance":True,
+        "replay_grid_n_periods":len(ORIGINAL_PERIOD_GRID),
+        "replay_duration_grid_days":ORIGINAL_DURATION_GRID.tolist(),
+        "no_NASA_truth_used_in_replay":True,
+        "BLS_evaluation_only_at_frozen_period_and_duration_for_event_influence":True,
+        "single_period_fit_not_expected_to_equal_full_grid_peak":True,
+        "leave_one_event_power_denominator":"single-period single-duration fit before removal",
         "leave_one_sampled_event_box_out_applied_at_same_period":True,
         "one_event_removal_does_not_claim_independent_validation":True,
         "no_new_detector_thresholds_set":True,
@@ -375,6 +434,9 @@ def main():
             "Event-level local median depth is descriptive; not a detection probability.",
             "Refitting BLS at the original period after deleting one event may shift phase.",
             "Positive host status does not guarantee in-sector planet transit.",
+            "The full original 4000x5 grid is replayed only to reconstruct the exact original BLS epoch.",
+            "1x1 (P,d) BLS refits use potentially different phase binning; their raw power is not expected to reproduce the full grid peak.",
+            "The one-event power ratio compares identical 1x1 methods before and after removal; phase may reoptimize.",
             "No signal-free or contaminant-verified negative control cohort is included.",
             "BLS power is not a validated false-alarm probability.",
             "Hyperparameter selection and calibrated null tests still needed.",
@@ -395,6 +457,8 @@ def main():
         f"Previous hard multi-event filter period matches: {multievent_success}/36.",
         "",
         "## Descriptive event-evidence audit",
+        "Original 4000x5 BLS grid replayed without NASA truth solely to recover the published peak epoch.",
+        "1x1 fixed-period fits are used for the leave-one-event power ratio; they may have different phase binning.",
         f"Sources with 3 or more independent locally positive transit windows: "
         f"{int((df.n_cycles_with_positive_local_depth>=3).sum())}/36.",
         f"Sources with 2 or fewer locally positive transit windows: "
