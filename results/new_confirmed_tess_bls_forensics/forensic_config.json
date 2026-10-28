@@ -1,0 +1,28 @@
+{
+  "design": "Exploratory, POST-HOC forensic audit of FROZEN BLS outputs",
+  "not_a_new_detector_or_retuned_pipeline": true,
+  "original_blind_direct_period_recoveries": 4,
+  "original_blind_n_hosts": 18,
+  "original_scores_are_unchanged": true,
+  "bls_period_range_high_days": [
+    12,
+    15
+  ],
+  "n_BLS_peaks_12_to_15_days": 11,
+  "n_BLS_peaks_with_less_than_2_sampled_events": 9,
+  "n_box_depths_greater_than_5_percent": 7,
+  "catalogue_BJD_without_TDB_unresolved": true,
+  "science_goal": "diagnose long-period/gap/single-event artifacts",
+  "frozen_upstream_blind_csv_sha256": "852fbb65d808594813931bf51bb7beeba03f870eb242f2256b9a961376b77bc6",
+  "frozen_upstream_selection_sha256": "c36121462f71a1237414e52e83e688eb06e2d8a2bd473e3543a5dd8229359186",
+  "photometric_policy": "TGLC_APERTURE_1800S_V1",
+  "must_not_train_or_tune_using_these_18": true,
+  "notes": [
+    "Large BLS SNR is white-noise proxy, not calibrated significance.",
+    "Single supported BLS transit event is not periodic confirmation.",
+    "A BLS box depth exceeding 5% is a descriptive flag, not exclusion.",
+    "BJD unqualified time system is not a valid precise timing claim.",
+    "All 18 hosts remain in the frozen experiment-17 denominator.",
+    "Future model improvements require separate new development TICs."
+  ]
+}
