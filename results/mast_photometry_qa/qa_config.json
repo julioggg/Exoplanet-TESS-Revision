@@ -1,0 +1,24 @@
+{
+  "data_source": "Original MAST TGLC FITS sector 2 and 7 pilot",
+  "flux_primary": "cal_psf_flux",
+  "flux_secondary_sensitivity": "cal_aper_flux",
+  "flux_choice_made_without_labels": true,
+  "common_mask": "finite time and finite POSITIVE calibrated PSF/aperture flux AND Lightkurve default TESS quality mask",
+  "tglc_flags_policy": "Inventory only in primary; strict 0 separately analyzed as sensitivity",
+  "time_frame": "TGLC TIME (BTJD; no conversion needed for relative days)",
+  "no_clipping_and_no_detrending": true,
+  "raw_FITS_never_uploaded_to_GitHub": true,
+  "private_cleaned_data": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/data/tglc_qa_cleaned",
+  "n_fits_requested": 4,
+  "n_fits_success": 3,
+  "n_fits_failed": 1,
+  "limitations": [
+    "Four previously inspected targets: engineering feasibility, not independent validation.",
+    "Different camera/CCD combinations may cause remaining differences even within sector.",
+    "Primary-mission calibrated TGLC flux can be corrupted for faint/contaminated sources.",
+    "No transit-injection/recovery or false-positive calibration is attempted here.",
+    "Point-to-point scatter is a descriptive proxy, not a rigorous CDPP calculation.",
+    "Rejecting nonpositive calibrated flux may bias rare, strongly variable targets.",
+    "Manual exclusion of TGLC-flagged cadences would require separate validation."
+  ]
+}

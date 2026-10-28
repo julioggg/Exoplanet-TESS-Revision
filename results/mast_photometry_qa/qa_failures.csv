@@ -1,0 +1,2 @@
+tic_id,sector,pair_id,error
+TIC_144285389,2,P0002,ValueError('Only 0 jointly valid cadences')

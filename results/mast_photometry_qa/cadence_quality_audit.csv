@@ -1,0 +1,4 @@
+tic_id,pair_id,sector,n_total,n_finite_time,n_nonfinite_cal_psf_flux,n_nonfinite_cal_aper_flux,n_nonpositive_cal_psf_flux,n_nonpositive_cal_aper_flux,n_nonzero_TESS_flags,n_failed_TESS_default,n_nonzero_TGLC_flags,n_common_quality_kept,n_strict_TGLC_zero_kept,fraction_kept,tess_flags_unique,tglc_flags_unique
+TIC_183532609,P0002,2,1245,1245,0,0,0,0,49,49,309,1196,903,0.9606425702811245,0:1196;32:1;128:33;160:5;164:10,0:936;1:309
+TIC_144415503,P0013,7,1093,1093,0,0,0,0,7,7,37,1086,1056,0.9935956084172004,0:1086;32:1;160:6,0:1056;1:37
+TIC_22598327,P0013,7,1093,1093,0,0,0,0,7,7,30,1086,1058,0.9935956084172004,0:1086;32:1;160:6,0:1063;1:30

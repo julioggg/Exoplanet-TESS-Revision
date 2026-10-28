@@ -1,0 +1,2 @@
+pair_id,sector,tic_a,tic_b,camera_a,camera_b,ccd_a,ccd_b,same_camera_and_ccd,n_a,n_b,n_matched_half_minute_bins,jaccard_half_minute_bins
+P0013,7,TIC_144415503,TIC_22598327,2,3,2,2,False,1086,1086,0,0.0
