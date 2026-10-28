@@ -1,0 +1,7 @@
+{
+  "stage": "one-shot locked host benchmark",
+  "freeze_sha256": "805a6e5261176a2c392cefa218172112a48333f3c7f43a2029d3134c3bf1c55e",
+  "n_sources": 18,
+  "reruns_for_hyperparameter_selection_PROHIBITED": true,
+  "results_not_yet_known_at_lock": true
+}

@@ -1,0 +1,72 @@
+{
+  "experiment": 28,
+  "stage": "first and only previously untouched 18-host assessment",
+  "frozen_protocol_sha256": "805a6e5261176a2c392cefa218172112a48333f3c7f43a2029d3134c3bf1c55e",
+  "fixed_method_sha256": "581783db8cc3aed784c38559dcea39b6394654c22ebde73476c3096e523931e6",
+  "n_sources": 18,
+  "scores_frozen": {
+    "multievent_evidence": 5.329805494852721,
+    "raw_log_power": 10.93563724046706
+  },
+  "results": {
+    "n_final_host_tics": 18,
+    "n_direct_blind_period_agreements": 4,
+    "direct_blind_period_concordance": 0.2222222222222222,
+    "direct_binomial95_ci_DESCRIPTIVE_ONLY": [
+      0.0640920477176665,
+      0.4763727657364801
+    ],
+    "n_period_half_or_double_aliases": 0,
+    "n_correct_and_raw_threshold_accepted": 0,
+    "n_correct_and_evidence_threshold_accepted": 2,
+    "n_wrong_period_but_raw_threshold_accepted": 2,
+    "n_wrong_period_but_evidence_threshold_accepted": 0,
+    "n_raw_threshold_accepted": 2,
+    "n_evidence_threshold_accepted": 2,
+    "stratified_results": [
+      {
+        "period_bin": "1.5-3.5",
+        "n_hosts": 6,
+        "direct": 1,
+        "alias": 0,
+        "raw_accepted": 0,
+        "evidence_accepted": 1,
+        "correct_and_raw": 0,
+        "correct_and_evidence": 1
+      },
+      {
+        "period_bin": "3.5-6.5",
+        "n_hosts": 6,
+        "direct": 2,
+        "alias": 0,
+        "raw_accepted": 1,
+        "evidence_accepted": 1,
+        "correct_and_raw": 0,
+        "correct_and_evidence": 1
+      },
+      {
+        "period_bin": "6.5-9.5",
+        "n_hosts": 6,
+        "direct": 1,
+        "alias": 0,
+        "raw_accepted": 1,
+        "evidence_accepted": 0,
+        "correct_and_raw": 0,
+        "correct_and_evidence": 0
+      }
+    ],
+    "NO_estimation_of_detection_sensitivity": true,
+    "NO_negative_host_control_or_real_FPR": true,
+    "NO_AUC_specificity_or_planet_confirmation": true,
+    "no_NASA_period_or_ephemeris_passed_to_BLS": true
+  },
+  "interpretation_limits": [
+    "Host-positive period agreement is not detection sensitivity.",
+    "Selected archived sector may lack observable planet transits.",
+    "Planet orbital period accuracy does not prove a transit signal.",
+    "Cannot measure false positives, specificity, ROC AUC or true FAP.",
+    "Uncertain BJD ephemerides are not evaluated here.",
+    "18 subjects give wide descriptive uncertainty intervals.",
+    "No results may be used to retune this one-shot final protocol."
+  ]
+}
