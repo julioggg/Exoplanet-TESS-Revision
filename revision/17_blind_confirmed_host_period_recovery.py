@@ -47,6 +47,7 @@ INVENTORY=ROOT/"results/new_confirmed_tess_inventory/selected_prospective_hosts.
 PROVENANCE=ROOT/"results/new_confirmed_tess_acquisition/verified_original_fits.csv"
 METRICS=ROOT/"results/new_confirmed_tess_photometry/aperture_curve_metrics.csv"
 PRIVATE=Path.home()/"exoplanet_revision/data/new_confirmed_tess_cleaned"
+POLICY_NAME="TGLC_APERTURE_1800S_V1"
 OUT=ROOT/"results/new_confirmed_tess_blind_period"
 PERIODS=np.linspace(0.5,15.0,4000)
 DURATIONS=np.array([0.05,0.10,0.15,0.20,0.25],dtype=float)
@@ -120,8 +121,13 @@ def blind_scan(t,flux):
     },power
 
 
+def curve_path(tic,sector,private):
+    """The EXACT file naming contract frozen in experiment 14."""
+    return private/f"{tic}_sector_{int(sector):02d}_{POLICY_NAME}.csv"
+
+
 def load_curve(tic,sector,private):
-    path=private/f"{tic}_sector_{int(sector):02d}.csv"
+    path=curve_path(tic,sector,private)
     if not path.is_file():
         raise FileNotFoundError(
             f"Original policy-14 cleaned file missing: {path}"
@@ -218,6 +224,18 @@ def main():
     prior_metrics=pd.read_csv(METRICS,dtype={"tic_id":str})
     verify_cohort(selection,manifest,prior_metrics)
     selection=selection.sort_values("selection_rank")
+    missing=[
+        curve_path(row.tic_id,row.sector,args.private_dir)
+        for row in selection.itertuples()
+        if not curve_path(row.tic_id,row.sector,args.private_dir).is_file()
+    ]
+    if missing:
+        raise FileNotFoundError(
+            f"Preflight failed: {len(missing)}/18 policy-14 cleaned "
+            f"curves missing; no BLS run or performance files written. "
+            f"Expected filename suffix _{POLICY_NAME}.csv; "
+            f"first missing: {missing[0]}"
+        )
     per_target=[]
     failures=[]
     for item in selection.to_dict("records"):
@@ -279,6 +297,11 @@ def main():
             })
             print(f"[FAIL] {tic}: {exc}",flush=True)
 
+    if not per_target:
+        raise RuntimeError(
+            "All BLS evaluations failed; benchmark errors have been "
+            "printed, and NO empty success/performance files will be written"
+        )
     df=pd.DataFrame(per_target)
     df.to_csv(args.outdir/"blind_period_per_host.csv",index=False)
     pd.DataFrame(failures,columns=[
@@ -324,7 +347,7 @@ def main():
         "frozen_selection_sha256":sha256(INVENTORY),
         "verified_fits_manifest_sha256":sha256(PROVENANCE),
         "uniform_qa_csv_sha256":sha256(METRICS),
-        "photometric_policy":"TGLC_APERTURE_1800S_V1",
+        "photometric_policy":POLICY_NAME,
         "BLS_input_truth_or_epoch":False,
         "blind_period_grid":[float(PERIODS[0]),float(PERIODS[-1]),len(PERIODS)],
         "blind_duration_days":DURATIONS.tolist(),
