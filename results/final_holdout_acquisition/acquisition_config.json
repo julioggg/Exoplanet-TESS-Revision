@@ -1,0 +1,40 @@
+{
+  "source_selection_csv": "results/future_tess_cohorts/LOCKED_DO_NOT_ANALYZE_holdout_products.csv",
+  "source_selection_sha256": "2f56355e694a0959a311529f2bd56601145effdc34e2f6b6356d4e260f3567b4",
+  "frozen_cohort_size": 18,
+  "frozen_source_tics": [
+    "TIC_235078021",
+    "TIC_98796344",
+    "TIC_305048087",
+    "TIC_408416746",
+    "TIC_255685030",
+    "TIC_39414571",
+    "TIC_451645081",
+    "TIC_118327550",
+    "TIC_144193715",
+    "TIC_359271092",
+    "TIC_453211454",
+    "TIC_317548889",
+    "TIC_231077395",
+    "TIC_259377017",
+    "TIC_317483660",
+    "TIC_29960110",
+    "TIC_176314383",
+    "TIC_54962195"
+  ],
+  "sources_attempted": 18,
+  "sources_verified": 18,
+  "source_failures": 0,
+  "no_failed_source_replacement": true,
+  "only_preselected_mast_uris": true,
+  "no_lightcurve_reexport": true,
+  "product": "original TGLC 1800-second primary-mission FITS",
+  "next_policy": "TGLC_APERTURE_1800S_V1",
+  "science_fits_outside_git": "/home/julio.guerra__utn.edu.ec/exoplanet_revision/data/final_holdout_original",
+  "notes": [
+    "Some confirmed hosts may have no transit observable in chosen sector.",
+    "A confirmed planet does not imply a model-detected transit.",
+    "No TIC is substituted for a failed acquisition or poor quality.",
+    "This acquisition step cannot validate exoplanet classifications."
+  ]
+}
