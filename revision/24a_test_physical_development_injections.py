@@ -19,14 +19,23 @@ spec.loader.exec_module(m)
 
 
 def main():
-    levels=[m.injection_config("TIC_55555555",i) for i in range(3)]
-    again=[m.injection_config("TIC_55555555",i) for i in range(3)]
+    levels=[m.injection_config("TIC_55555555",i,5) for i in range(3)]
+    again=[m.injection_config("TIC_55555555",i,5) for i in range(3)]
     assert levels==again
     for j,cfg in enumerate(levels):
         lo,hi=m.PERIOD_RANGES[j]
         assert lo<cfg["true_period_days"]<hi
-        assert cfg["radius_ratio"]==m.RADIUS_RATIOS[j]
+        assert cfg["radius_ratio"]==m.RADIUS_RATIOS[(4+j)%3]
         assert .05<=cfg["impact_parameter"]<=.65
+    # 36 source ranks; each 3x3 period-depth cell contains exactly 12
+    # source TICs. A given star sees all three depths in different bins.
+    for level in range(3):
+        counts=[sum(
+            m.injection_config(f"TIC_{rank}",level,rank)["radius_level"]==k
+            for rank in range(1,37)
+        ) for k in range(3)]
+        assert counts==[12,12,12],counts
+    assert len({x["radius_level"] for x in levels})==3
 
     t=1500.0+np.arange(1200,dtype=float)/48.0
     rng=np.random.default_rng(2468)
@@ -76,8 +85,8 @@ def main():
     assert nremoved>0
 
     dummy=pd.DataFrame({
-        "tic_id":[f"TIC_{i}" for i in range(36)],
-        "injected_period_direct_match_2pct":[i%2==0 for i in range(36)]
+        "tic_id":[f"TIC_{i}" for i in range(12)],
+        "injected_period_direct_match_2pct":[i%2==0 for i in range(12)]
     })
     lo,hi=m.star_bootstrap_ci(
         dummy,"injected_period_direct_match_2pct",n_boot=300
@@ -91,6 +100,7 @@ def main():
     # ever querying or opening the real locked source CSV.
     dev=pd.DataFrame({
         "tic_id":[f"TIC_{i}" for i in range(36)],
+        "selection_rank":np.arange(1,37),
         "role":["development"]*35+["LOCKED_HOLDOUT"],
         "is_frozen_test_tic":[False]*35+[True],
     })
@@ -116,7 +126,7 @@ def main():
         t,physical,sample_cfg["true_period_days"],physical_meta["t0"]
     )>=2
 
-    print("[PASS] Frozen stratified periods, planetary radii, deterministic seeds")
+    print("[PASS] Balanced 3x3 period x depth Latin-square; deterministic seeds")
     print("[PASS] Paired synthetic profiles preserve original time and flux")
     print("[PASS] Actual PyTransit quadratic physical transit interface")
     print("[PASS] Original 4000x5 blind BLS and event-influence diagnostics")
