@@ -1,0 +1,78 @@
+{
+  "experiment": 30,
+  "method": "Exploratory source-disjoint RF transfer evaluation on published paired physical injections",
+  "source": "Pre-existing experiment 06/08 447 paired trials; 42 TICs/126 paired trials held for evaluation",
+  "n_original_RF_sources": 369,
+  "n_removed_from_RF_fit_and_RF_normal_test": 54,
+  "n_RF_source_pool_after_exclusions": 315,
+  "n_RF_training_sources": 220,
+  "n_RF_normal_testing_sources": 95,
+  "n_injected_testing_source_TICs": 42,
+  "n_paired_injection_evaluation_trials": 126,
+  "models": {
+    "FULL_11": [
+      "mean_flux",
+      "median_flux",
+      "std_flux",
+      "mad_flux",
+      "amplitude",
+      "n_points",
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power",
+      "snr_estimate"
+    ],
+    "NO_N_POINTS": [
+      "mean_flux",
+      "median_flux",
+      "std_flux",
+      "mad_flux",
+      "amplitude",
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power",
+      "snr_estimate"
+    ],
+    "BLS_ONLY_5": [
+      "best_period",
+      "transit_duration",
+      "transit_depth",
+      "bls_power",
+      "snr_estimate"
+    ]
+  },
+  "model_params": {
+    "n_estimators": 500,
+    "class_weight": "balanced",
+    "random_state": 42,
+    "threshold": 0.5
+  },
+  "first_random_source_partition": "remove 42 prior injection-eval and 12 pilot stars; stratified 70/30 of remaining 315",
+  "same_RF_per_model_evaluates_both_normal_and_injections": true,
+  "original_RF_feature_powers": "Legacy original RF model had Astropy unweighted BLS power",
+  "reconstructed_BLS_power": "original paired dy-weighted power * noise_sigma_baseline**2",
+  "legacy_RF_SNR_formula": "abs(transit_depth)/std_flux",
+  "bootstrap_unit": "stellar TIC (42); all three injections retained together",
+  "bootstrap_replicates": 3000,
+  "locked_18_final_holdout_not_accessed": true,
+  "source_hashes": {
+    "data/dataset/final_dataset.csv": "eaf7f6c9389922754e9dea2ab3768f317b35bf468a332621c425487a5ea2e173",
+    "results/injection_full/paired_features.csv": "506bce906934b7915a6a1c393b57c6a15122c74862da00d3c5377965f9b1b813",
+    "results/injection_full/injection_truth_and_recovery.csv": "5db46a1e7e9d98c9aa4d697f1e839c336f10c62d9d392c9e825d6872f23f18ce",
+    "results/injection_validation/source_star_split.csv": "1f4f6a5a8aff594c3785c05fb38282682d1c46f6efa42b5faaa4fa9c27795d2e",
+    "results/injection_pilot/injection_truth_and_recovery.csv": "5ec7dbaa90150c49896ffea636a3f97e53b234367b154684da5206b4f5f545bd"
+  },
+  "limitations": [
+    "The paired injection sources come from the catalogue-negative group, not verified transit-free stars.",
+    "The RF was originally built to discriminate confirmed-host catalogue labels, not injection presence.",
+    "Injection BLS preprocessing and trial-period grid differ from those used to build original RF features; power is rescaled for unit comparability, not complete pipeline equivalence.",
+    "The original RF sampling/cadence shortcut can persist even after physical injections.",
+    "RF probabilities are not calibrated astrophysical transit-detection probabilities.",
+    "Normal-test AUC is for catalogue labels among other stars; it is not an injection-detection AUC.",
+    "Only 42 source clusters, not 126 independent stars, define the injection transfer population.",
+    "This is a separate experiment from the 108 TGLC injections in manuscript section 4.7 and from the 18-host frozen final test.",
+    "All results postdate the 18-host frozen benchmark and cannot be used to change its algorithm."
+  ]
+}
